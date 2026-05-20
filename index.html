@@ -477,7 +477,7 @@ footer a:hover { color: var(--text-muted); }
 <p style="font-size:var(--text-sm);color:var(--text-muted);margin-top:var(--space-1);">GPT-5.5 · Claude Sonnet 4.6 · Gemini 3.1 Pro</p>
 </div>
 <div class="header-meta">
-<span class="last-updated" id="lastUpdated">Updated: May 12, 2026</span>
+<span class="last-updated" id="lastUpdated">Updated: May 20, 2026</span>
 <button aria-label="Switch theme" class="theme-toggle" data-theme-toggle="">
 <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
 </button>
@@ -672,6 +672,27 @@ footer a:hover { color: var(--text-muted); }
 <div class="tab-panel" id="tab-changelog">
 <h2 class="section-title">Running Changelog</h2>
 <div class="changelog">
+<div class="changelog-entry">
+<span class="changelog-date">May 19</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new google">Google</span> gemini-3.5-flash GA + Managed Agents preview + Antigravity Agent</div>
+<div class="detail">Three releases at once. <strong>gemini-3.5-flash is GA</strong> — next-gen mid-tier model positioned between Flash-Lite and 3.1 Pro for general coding/RAG/agent work. <strong>Managed Agents (public preview)</strong> runs autonomous, stateful agents inside secure Google-hosted Linux sandboxes — Google operates the runtime, you orchestrate. <strong>antigravity-preview-05-2026</strong> is a Managed Agent that can plan, code, manage files, and browse the web inside the sandbox. Together this is Google's enterprise answer to OpenAI Agents SDK and Anthropic Managed Agents — fully hosted, no sandbox infrastructure to run. Worth evaluating against the OpenAI/Anthropic stacks if you've been blocked on agent runtime ops. (<a href="https://ai.google.dev/gemini-api/docs/changelog" rel="noopener" target="_blank">Gemini API changelog</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">May 19</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new openai">OpenAI</span> Secure MCP Tunnel GA for enterprise</div>
+<div class="detail">Account-led GA of Secure MCP Tunnel — lets ChatGPT web, Codex, the Responses API, and AgentKit connect to private/on-prem MCP servers via a customer-hosted tunnel client. No public exposure of internal MCP endpoints, no inbound firewall holes, and works across the full OpenAI agent surface. Material unlock for regulated industries (finance, healthcare, gov) that couldn't expose internal tools to public AI APIs. Pair with self-hosted MCP servers for the most secure tool-use posture available from OpenAI today. (<a href="https://developers.openai.com/api/docs/changelog" rel="noopener" target="_blank">OpenAI API changelog</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">May 19</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new anthropic">Anthropic</span> Claude Managed Agents: self-hosted sandboxes + MCP tunnels</div>
+<div class="detail">Two major adds to Claude Managed Agents. <strong>Self-hosted sandboxes (public beta)</strong>: tool execution runs in your infrastructure (or via Cloudflare / Daytona / Modal / Vercel) while orchestration stays on Anthropic — data and code never leave customer infra. <strong>MCP tunnels (research preview)</strong>: lightweight gateway uses a single outbound connection (no inbound firewall rules, no public endpoints, encrypted end-to-end) and works in both Managed Agents and the Messages API. Same enterprise security pattern OpenAI shipped today — the three vendors are now competing on identical agent-runtime feature surfaces. (<a href="https://claude.com/blog/claude-managed-agents-updates" rel="noopener" target="_blank">Claude Managed Agents update</a>)</div>
+</div>
+</div>
 <div class="changelog-entry">
 <span class="changelog-date">May 12</span>
 <div class="changelog-content">
