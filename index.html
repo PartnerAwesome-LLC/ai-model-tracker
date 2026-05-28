@@ -477,7 +477,7 @@ footer a:hover { color: var(--text-muted); }
 <p style="font-size:var(--text-sm);color:var(--text-muted);margin-top:var(--space-1);">GPT-5.5 · Claude Sonnet 4.6 · Gemini 3.1 Pro</p>
 </div>
 <div class="header-meta">
-<span class="last-updated" id="lastUpdated">Updated: May 20, 2026</span>
+<span class="last-updated" id="lastUpdated">Updated: May 28, 2026</span>
 <button aria-label="Switch theme" class="theme-toggle" data-theme-toggle="">
 <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
 </button>
@@ -672,6 +672,13 @@ footer a:hover { color: var(--text-muted); }
 <div class="tab-panel" id="tab-changelog">
 <h2 class="section-title">Running Changelog</h2>
 <div class="changelog">
+<div class="changelog-entry">
+<span class="changelog-date">May 25</span>
+<div class="changelog-content">
+<div class="title"><span class="badge deprecation google">Google</span> gemini-3.1-flash-lite-preview shut down</div>
+<div class="detail">gemini-3.1-flash-lite-preview is offline as of May 25, 2026, as scheduled. Any code still pointing at the preview SKU will now error — migrate to the GA model name <code>gemini-3.1-flash-lite</code>. If you missed this and are seeing outages today, the swap is a string change in your model parameter; no schema or pricing differences. (<a href="https://ai.google.dev/gemini-api/docs/changelog" rel="noopener" target="_blank">Gemini API changelog</a>)</div>
+</div>
+</div>
 <div class="changelog-entry">
 <span class="changelog-date">May 26</span>
 <div class="changelog-content">
@@ -1054,12 +1061,7 @@ footer a:hover { color: var(--text-muted); }
 <li><strong>Gemini Interactions API schema change</strong> — new schema (<code>outputs</code> → <code>steps</code>, updated <code>response_format</code>) becomes default May 20, 2026. Legacy schema removed June 6, 2026. Update agent frameworks before then. (<a href="https://ai.google.dev/gemini-api/docs/changelog" rel="noopener" target="_blank">Gemini API changelog</a>)</li>
 </ul>
 </div>
-<div class="deprecation-banner">
-<h3>Google — May 25, 2026</h3>
-<ul>
-<li><strong>gemini-3.1-flash-lite-preview</strong> — deprecates May 11, shuts down May 25. Migrate to GA <code>gemini-3.1-flash-lite</code> (<a href="https://ai.google.dev/gemini-api/docs/changelog" rel="noopener" target="_blank">Gemini API changelog</a>)</li>
-</ul>
-</div>
+
 <div class="deprecation-banner">
 <h3>OpenAI — July 2, 2026 → Jan 6, 2027</h3>
 <ul>
