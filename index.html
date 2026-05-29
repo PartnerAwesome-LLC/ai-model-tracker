@@ -477,7 +477,7 @@ footer a:hover { color: var(--text-muted); }
 <p style="font-size:var(--text-sm);color:var(--text-muted);margin-top:var(--space-1);">GPT-5.5 · Claude Sonnet 4.6 · Gemini 3.1 Pro</p>
 </div>
 <div class="header-meta">
-<span class="last-updated" id="lastUpdated">Updated: May 28, 2026</span>
+<span class="last-updated" id="lastUpdated">Updated: May 29, 2026</span>
 <button aria-label="Switch theme" class="theme-toggle" data-theme-toggle="">
 <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
 </button>
@@ -672,6 +672,20 @@ footer a:hover { color: var(--text-muted); }
 <div class="tab-panel" id="tab-changelog">
 <h2 class="section-title">Running Changelog</h2>
 <div class="changelog">
+<div class="changelog-entry">
+<span class="changelog-date">May 28</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new anthropic">Anthropic</span> Claude Opus 4.8 launched — fast mode 2.5x faster, 3x cheaper</div>
+<div class="detail">Anthropic released <code>claude-opus-4-8</code>. Standard pricing is unchanged from Opus 4.7: <strong>$5/1M input, $25/1M output</strong>. Fast mode is the headline upgrade — <strong>2.5x speed at $10/1M input, $50/1M output</strong>, which Anthropic states is 3x cheaper than the previous fast mode tier. Three additional shipping features: (1) Messages API now accepts <code>system</code> entries inside the messages array, enabling mid-run system updates (useful for agents that need to re-scope mid-task without restarting the conversation); (2) Claude Code dynamic workflows (research preview); (3) effort control in claude.ai and Cowork. Opus 4.8 is now the top-tier choice for high-stakes reasoning and long-context coding agents — reserve for jobs where Sonnet 4.6 hits quality limits. (<a href="https://www.anthropic.com/news/claude-opus-4-8" rel="noopener" target="_blank">Anthropic news</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">May 28</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new google">Google</span> gemini-3.1-flash-image + gemini-3-pro-image go GA; video-as-context</div>
+<div class="detail">Google moved its native visual generation models to GA: <code>gemini-3.1-flash-image</code> (fast/cost-optimized) and <code>gemini-3-pro-image</code> (frontier quality). Notable new capability on Flash Image: <strong>video-as-context for video-to-image generation</strong> — pass a video and generate keyframes/derivatives without a separate vision pipeline. <strong>Preview SKUs deprecated effective May 28 and shut down June 25, 2026</strong>: migrate <code>gemini-3.1-flash-image-preview</code> → <code>gemini-3.1-flash-image</code>, and <code>gemini-3-pro-image-preview</code> → <code>gemini-3-pro-image</code>. Worth comparing against OpenAI gpt-image-1 and the older Imagen/Veo workflows. (<a href="https://ai.google.dev/gemini-api/docs/changelog" rel="noopener" target="_blank">Gemini API changelog</a>)</div>
+</div>
+</div>
 <div class="changelog-entry">
 <span class="changelog-date">May 25</span>
 <div class="changelog-content">
@@ -1053,6 +1067,13 @@ footer a:hover { color: var(--text-muted); }
 <h3>OpenAI — May 12, 2026 (SHUT DOWN)</h3>
 <ul>
 <li><strong>dall-e-2</strong> and <strong>dall-e-3</strong> snapshots — shut down May 12, 2026. Migrate to <code>gpt-image-1</code> or <code>gpt-image-1-mini</code>. (<a href="https://developers.openai.com/api/docs/deprecations/" rel="noopener" target="_blank">OpenAI deprecations</a>)</li>
+</ul>
+</div>
+<div class="deprecation-banner">
+<h3>Google — June 25, 2026</h3>
+<ul>
+<li><strong>gemini-3.1-flash-image-preview</strong> — deprecated May 28, shuts down June 25. Migrate to GA <code>gemini-3.1-flash-image</code> (<a href="https://ai.google.dev/gemini-api/docs/changelog" rel="noopener" target="_blank">Gemini API changelog</a>)</li>
+<li><strong>gemini-3-pro-image-preview</strong> — deprecated May 28, shuts down June 25. Migrate to GA <code>gemini-3-pro-image</code> (<a href="https://ai.google.dev/gemini-api/docs/changelog" rel="noopener" target="_blank">Gemini API changelog</a>)</li>
 </ul>
 </div>
 <div class="deprecation-banner">
