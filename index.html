@@ -477,7 +477,7 @@ footer a:hover { color: var(--text-muted); }
 <p style="font-size:var(--text-sm);color:var(--text-muted);margin-top:var(--space-1);">GPT-5.5 · Claude Sonnet 4.6 · Gemini 3.1 Pro</p>
 </div>
 <div class="header-meta">
-<span class="last-updated" id="lastUpdated">Updated: May 29, 2026</span>
+<span class="last-updated" id="lastUpdated">Updated: June 2, 2026</span>
 <button aria-label="Switch theme" class="theme-toggle" data-theme-toggle="">
 <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
 </button>
@@ -672,6 +672,13 @@ footer a:hover { color: var(--text-muted); }
 <div class="tab-panel" id="tab-changelog">
 <h2 class="section-title">Running Changelog</h2>
 <div class="changelog">
+<div class="changelog-entry">
+<span class="changelog-date">Jun 1</span>
+<div class="changelog-content">
+<div class="title"><span class="badge deprecation google">Google</span> Gemini 2.0 Flash family shut down</div>
+<div class="detail">The entire Gemini 2.0 Flash family is now offline: <code>gemini-2.0-flash</code>, <code>gemini-2.0-flash-001</code>, <code>gemini-2.0-flash-lite</code>, and <code>gemini-2.0-flash-lite-001</code>. Migrate to <code>gemini-3.5-flash</code> (next-gen mid-tier, went GA May 19) or <code>gemini-3.1-flash-lite</code> (cost/latency-optimized). If anything in production, RAG pipelines, embedding workers, or agent tool-routing still references 2.0 Flash SKUs, it will now error — fix is a string change. Worth auditing today. (<a href="https://ai.google.dev/gemini-api/docs/changelog" rel="noopener" target="_blank">Gemini API changelog</a>)</div>
+</div>
+</div>
 <div class="changelog-entry">
 <span class="changelog-date">May 28</span>
 <div class="changelog-content">
