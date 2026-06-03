@@ -477,7 +477,7 @@ footer a:hover { color: var(--text-muted); }
 <p style="font-size:var(--text-sm);color:var(--text-muted);margin-top:var(--space-1);">GPT-5.5 · Claude Sonnet 4.6 · Gemini 3.1 Pro</p>
 </div>
 <div class="header-meta">
-<span class="last-updated" id="lastUpdated">Updated: June 2, 2026</span>
+<span class="last-updated" id="lastUpdated">Updated: June 3, 2026</span>
 <button aria-label="Switch theme" class="theme-toggle" data-theme-toggle="">
 <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
 </button>
@@ -672,6 +672,13 @@ footer a:hover { color: var(--text-muted); }
 <div class="tab-panel" id="tab-changelog">
 <h2 class="section-title">Running Changelog</h2>
 <div class="changelog">
+<div class="changelog-entry">
+<span class="changelog-date">Jun 2</span>
+<div class="changelog-content">
+<div class="title"><span class="badge deprecation openai">OpenAI</span> gpt-image-1 family deprecation: shut down Dec 1, 2026; replacement is gpt-image-2</div>
+<div class="detail">OpenAI announced shutdown of <code>gpt-image-1-mini</code>, <code>gpt-image-1.5</code>, and <code>chatgpt-image-latest</code> on <strong>Dec 1, 2026</strong>. Replacement is <code>gpt-image-2</code>. This is notable because <code>gpt-image-1</code> was the migration target for the May 12 DALL·E 2/3 shutdown — so anyone who just migrated to <code>gpt-image-1-mini</code> for cost reasons gets a second migration before year-end. Plan capacity and prompt-compatibility testing for gpt-image-2 over Q3 to avoid a rushed November cutover. No price/quality details on gpt-image-2 surfaced yet. (<a href="https://developers.openai.com/api/docs/deprecations/" rel="noopener" target="_blank">OpenAI deprecations</a>)</div>
+</div>
+</div>
 <div class="changelog-entry">
 <span class="changelog-date">Jun 1</span>
 <div class="changelog-content">
@@ -1070,6 +1077,12 @@ footer a:hover { color: var(--text-muted); }
 <!-- Tab: Deprecations -->
 <div class="tab-panel" id="tab-deprecations">
 <h2 class="section-title">Upcoming Deprecations &amp; Deadlines</h2>
+<div class="deprecation-banner">
+<h3>OpenAI — December 1, 2026</h3>
+<ul>
+<li><strong>gpt-image-1-mini</strong>, <strong>gpt-image-1.5</strong>, and <strong>chatgpt-image-latest</strong> — shut down Dec 1, 2026. Migrate to <code>gpt-image-2</code> (<a href="https://developers.openai.com/api/docs/deprecations/" rel="noopener" target="_blank">OpenAI deprecations</a>)</li>
+</ul>
+</div>
 <div class="deprecation-banner">
 <h3>OpenAI — May 12, 2026 (SHUT DOWN)</h3>
 <ul>
