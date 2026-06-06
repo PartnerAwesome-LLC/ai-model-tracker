@@ -477,7 +477,7 @@ footer a:hover { color: var(--text-muted); }
 <p style="font-size:var(--text-sm);color:var(--text-muted);margin-top:var(--space-1);">GPT-5.5 · Claude Sonnet 4.6 · Gemini 3.1 Pro</p>
 </div>
 <div class="header-meta">
-<span class="last-updated" id="lastUpdated">Updated: June 3, 2026</span>
+<span class="last-updated" id="lastUpdated">Updated: June 6, 2026</span>
 <button aria-label="Switch theme" class="theme-toggle" data-theme-toggle="">
 <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
 </button>
@@ -672,6 +672,27 @@ footer a:hover { color: var(--text-muted); }
 <div class="tab-panel" id="tab-changelog">
 <h2 class="section-title">Running Changelog</h2>
 <div class="changelog">
+<div class="changelog-entry">
+<span class="changelog-date">Jun 3</span>
+<div class="changelog-content">
+<div class="title"><span class="badge deprecation openai">OpenAI</span> Agent Builder deprecated — sunset Nov 30, 2026</div>
+<div class="detail">OpenAI is winding down <strong>Agent Builder</strong> on Nov 30, 2026. Replacement path: continue with the <strong>Agents SDK</strong> (Python + TypeScript) or <strong>ChatGPT Workspace Agents</strong>. If you built agents in Agent Builder's visual canvas, plan a code-based migration over Q3/Q4. The Agents SDK is the more durable foundation — same primitives, full control, and now has TypeScript parity (shipped May 6). (<a href="https://developers.openai.com/api/docs/deprecations/" rel="noopener" target="_blank">OpenAI deprecations</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Jun 3</span>
+<div class="changelog-content">
+<div class="title"><span class="badge deprecation openai">OpenAI</span> Evals platform sunset — read-only Oct 31, full shutdown Nov 30</div>
+<div class="detail">OpenAI is sunsetting its Evals product. Two dates to track: <strong>Oct 31, 2026</strong> — existing evals become read-only (no new runs). <strong>Nov 30, 2026</strong> — the Evals dashboard and API are fully shut down. <strong>No first-party replacement announced.</strong> Export any eval results, datasets, and grading configs before Oct 31. Plan to move to OSS frameworks (OpenAI Evals OSS repo, LangSmith, Braintrust, Inspect AI) or build a thin internal eval harness against your model gateway. This is a meaningful gap — worth flagging to anyone running production eval pipelines on OpenAI Evals. (<a href="https://developers.openai.com/api/docs/deprecations/" rel="noopener" target="_blank">OpenAI deprecations</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Jun 3</span>
+<div class="changelog-content">
+<div class="title"><span class="badge deprecation openai">OpenAI</span> Reusable prompts (v1/prompts) deprecated — sunset Nov 30, 2026</div>
+<div class="detail">The <code>v1/prompts</code> API and OpenAI-managed reusable prompt objects shut down Nov 30, 2026. Replacement: move prompt content into your application code. <strong>What it means:</strong> OpenAI is exiting the prompt-registry business — treat prompts as application configuration (Git + config files, DB rows, feature-flag system) rather than an OpenAI resource. <strong>Action:</strong> inventory any code referencing <code>v1/prompts</code>, move prompts to your own store, and version them in your repo for reproducibility. (<a href="https://developers.openai.com/api/docs/deprecations/" rel="noopener" target="_blank">OpenAI deprecations</a>)</div>
+</div>
+</div>
 <div class="changelog-entry">
 <span class="changelog-date">Jun 2</span>
 <div class="changelog-content">
@@ -1077,6 +1098,14 @@ footer a:hover { color: var(--text-muted); }
 <!-- Tab: Deprecations -->
 <div class="tab-panel" id="tab-deprecations">
 <h2 class="section-title">Upcoming Deprecations &amp; Deadlines</h2>
+<div class="deprecation-banner">
+<h3>OpenAI — October 31 → November 30, 2026</h3>
+<ul>
+<li><strong>Evals platform</strong> — existing evals read-only on Oct 31, 2026; dashboard + API shut down Nov 30, 2026. No first-party replacement; move to OSS (LangSmith, Braintrust, Inspect AI) or internal harness. (<a href="https://developers.openai.com/api/docs/deprecations/" rel="noopener" target="_blank">OpenAI deprecations</a>)</li>
+<li><strong>Reusable prompts</strong> (<code>v1/prompts</code> API + prompt objects) — shut down Nov 30, 2026. Move prompt content into application code. (<a href="https://developers.openai.com/api/docs/deprecations/" rel="noopener" target="_blank">OpenAI deprecations</a>)</li>
+<li><strong>Agent Builder</strong> — shut down Nov 30, 2026. Migrate to Agents SDK or ChatGPT Workspace Agents. (<a href="https://developers.openai.com/api/docs/deprecations/" rel="noopener" target="_blank">OpenAI deprecations</a>)</li>
+</ul>
+</div>
 <div class="deprecation-banner">
 <h3>OpenAI — December 1, 2026</h3>
 <ul>
