@@ -477,7 +477,7 @@ footer a:hover { color: var(--text-muted); }
 <p style="font-size:var(--text-sm);color:var(--text-muted);margin-top:var(--space-1);">GPT-5.5 · Claude Sonnet 4.6 · Gemini 3.1 Pro</p>
 </div>
 <div class="header-meta">
-<span class="last-updated" id="lastUpdated">Updated: June 6, 2026</span>
+<span class="last-updated" id="lastUpdated">Updated: June 10, 2026</span>
 <button aria-label="Switch theme" class="theme-toggle" data-theme-toggle="">
 <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
 </button>
@@ -672,6 +672,13 @@ footer a:hover { color: var(--text-muted); }
 <div class="tab-panel" id="tab-changelog">
 <h2 class="section-title">Running Changelog</h2>
 <div class="changelog">
+<div class="changelog-entry">
+<span class="changelog-date">Jun 9</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new anthropic">Anthropic</span> Claude Fable 5 (Mythos-class) GA + Mythos 5 for vetted partners; 30-day retention requirement</div>
+<div class="detail">Anthropic launched <strong>Claude Fable 5</strong>, its first generally available <em>Mythos-class</em> model, and introduced <strong>Claude Mythos 5</strong> (same underlying model) for a small group of cyberdefenders/infrastructure providers via Project Glasswing. The operationally important change: Anthropic now requires <strong>30-day retention</strong> for all traffic on Mythos-class models to run safety classifiers (prompts/outputs retained up to 30 days, then deleted; not used to train models). <strong>What it means for coding/agents:</strong> likely a new top-end option for long-horizon autonomous coding tasks, but you must re-check privacy, ZDR assumptions, and vendor-risk posture before enabling it in production. (<a href="https://www.anthropic.com/news/claude-fable-5-mythos-5" rel="noopener" target="_blank">Anthropic announcement</a>)</div>
+</div>
+</div>
 <div class="changelog-entry">
 <span class="changelog-date">Jun 3</span>
 <div class="changelog-content">
