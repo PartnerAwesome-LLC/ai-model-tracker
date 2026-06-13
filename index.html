@@ -477,7 +477,7 @@ footer a:hover { color: var(--text-muted); }
 <p style="font-size:var(--text-sm);color:var(--text-muted);margin-top:var(--space-1);">GPT-5.5 · Claude Sonnet 4.6 · Gemini 3.1 Pro</p>
 </div>
 <div class="header-meta">
-<span class="last-updated" id="lastUpdated">Updated: June 10, 2026</span>
+<span class="last-updated" id="lastUpdated">Updated: June 13, 2026</span>
 <button aria-label="Switch theme" class="theme-toggle" data-theme-toggle="">
 <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
 </button>
@@ -675,8 +675,8 @@ footer a:hover { color: var(--text-muted); }
 <div class="changelog-entry">
 <span class="changelog-date">Jun 9</span>
 <div class="changelog-content">
-<div class="title"><span class="badge new anthropic">Anthropic</span> Claude Fable 5 (Mythos-class) GA + Mythos 5 for vetted partners; 30-day retention requirement</div>
-<div class="detail">Anthropic launched <strong>Claude Fable 5</strong>, its first generally available <em>Mythos-class</em> model, and introduced <strong>Claude Mythos 5</strong> (same underlying model) for a small group of cyberdefenders/infrastructure providers via Project Glasswing. The operationally important change: Anthropic now requires <strong>30-day retention</strong> for all traffic on Mythos-class models to run safety classifiers (prompts/outputs retained up to 30 days, then deleted; not used to train models). <strong>What it means for coding/agents:</strong> likely a new top-end option for long-horizon autonomous coding tasks, but you must re-check privacy, ZDR assumptions, and vendor-risk posture before enabling it in production. (<a href="https://www.anthropic.com/news/claude-fable-5-mythos-5" rel="noopener" target="_blank">Anthropic announcement</a>)</div>
+<div class="title"><span class="badge deprecation anthropic">Anthropic</span> Claude Fable 5 + Mythos 5 DISABLED FOR ALL CUSTOMERS — US export controls (Jun 12)</div>
+<div class="detail"><strong>Three days after GA, Anthropic disabled Claude Fable 5 and Claude Mythos 5 for all customers worldwide</strong> in response to a US export control directive received at 5:21pm ET on June 12. The directive technically targets foreign nationals, but the operational result is a full shutdown for everyone. All other Anthropic models (Sonnet 4.6, Opus 4.6/4.7/4.8) are unaffected. <strong>Restore timeline is unspecified.</strong> Original launch context (now suspended): Fable 5 was Anthropic's first GA <em>Mythos-class</em> model, with a 30-day retention requirement for safety classifiers (not used for training). If you piloted Fable 5 / Mythos 5 (including via GitHub Copilot's opt-in toggle), expect immediate hard failure on those model IDs — route around them in code or fall back to Opus 4.8. Worth tracking closely as AI export-control precedent affecting frontier models. (<a href="https://www.anthropic.com/news/fable-mythos-access" rel="noopener" target="_blank">Anthropic statement</a>, <a href="https://www.anthropic.com/news/claude-fable-5-mythos-5" rel="noopener" target="_blank">original launch</a>)</div>
 </div>
 </div>
 <div class="changelog-entry">
