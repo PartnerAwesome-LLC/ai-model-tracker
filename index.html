@@ -477,7 +477,7 @@ footer a:hover { color: var(--text-muted); }
 <p style="font-size:var(--text-sm);color:var(--text-muted);margin-top:var(--space-1);">GPT-5.5 · Claude Sonnet 4.6 · Gemini 3.1 Pro</p>
 </div>
 <div class="header-meta">
-<span class="last-updated" id="lastUpdated">Updated: June 13, 2026</span>
+<span class="last-updated" id="lastUpdated">Updated: June 16, 2026</span>
 <button aria-label="Switch theme" class="theme-toggle" data-theme-toggle="">
 <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
 </button>
@@ -672,6 +672,20 @@ footer a:hover { color: var(--text-muted); }
 <div class="tab-panel" id="tab-changelog">
 <h2 class="section-title">Running Changelog</h2>
 <div class="changelog">
+<div class="changelog-entry">
+<span class="changelog-date">Jun 15</span>
+<div class="changelog-content">
+<div class="title"><span class="badge deprecation google">Google</span> Imagen 4.0 + Veo 2.0/3.0 deprecated — Veo shutdown in 14 days</div>
+<div class="detail">Google posted a Gemini API release note deprecating the entire <strong>Imagen 4.0 family</strong> (<code>imagen-4.0-generate-001</code>, <code>imagen-4.0-ultra-generate-001</code>, <code>imagen-4.0-fast-generate-001</code>) with <strong>shutdown Aug 17, 2026</strong>, and the <strong>Veo 2.0 + Veo 3.0 video models</strong> (<code>veo-2.0-generate-001</code>, <code>veo-3.0-generate-001</code>, <code>veo-3.0-fast-generate-001</code>) with <strong>shutdown June 30, 2026 — only 14 days away</strong>. Migration: move to <strong>Veo 3.1 preview IDs</strong> (<code>veo-3.1-generate-preview</code>, <code>veo-3.1-fast-generate-preview</code>) or <strong>Veo 3.1 GA via Gemini Enterprise Agent Platform</strong>. For Imagen, expect a successor announcement before Aug 17; in the meantime, prototype on <code>gemini-3.1-flash-image</code> / <code>gemini-3-pro-image</code> for image generation if your use case fits. <strong>The Veo deadline is tight</strong> — audit any video pipelines this week. (<a href="https://ai.google.dev/gemini-api/docs/changelog" rel="noopener" target="_blank">Gemini API changelog</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Jun 11</span>
+<div class="changelog-content">
+<div class="title"><span class="badge deprecation openai">OpenAI</span> GPT-5 + o3 snapshots deprecated — full shutdown Dec 11, 2026</div>
+<div class="detail">OpenAI deprecated the entire <strong>GPT-5 and o3 snapshot families</strong> with a hard <strong>shutdown date of Dec 11, 2026</strong>. The affected IDs and replacements: <code>gpt-5-2025-08-07</code> → <strong>gpt-5.5</strong>; <code>gpt-5-mini-2025-08-07</code> → <strong>gpt-5.4-mini</strong>; <code>gpt-5-nano-2025-08-07</code> → <strong>gpt-5.4-nano</strong>; <code>gpt-5-pro-2025-10-06</code> → <strong>gpt-5.5-pro</strong>; <code>o3-2025-04-16</code> → <strong>gpt-5.5</strong>; <code>o3-pro-2025-06-10</code> → <strong>gpt-5.5-pro</strong>. <strong>Note that o3-pro consolidates into gpt-5.5-pro</strong> — there's no longer a separate reasoning-only flagship; reasoning is unified into the 5.5 line. For coding/agents: gpt-5.5 ($5/$30 per 1M, 1.05M context) is a meaningful upgrade over gpt-5 if you haven't already migrated. For RAG/cost-sensitive workloads, gpt-5.4-mini and gpt-5.4-nano are the new floor. Six months runway is generous but pin your snapshot dates and start CI testing on 5.4/5.5 now. (<a href="https://developers.openai.com/api/docs/deprecations/" rel="noopener" target="_blank">OpenAI deprecations</a>)</div>
+</div>
+</div>
 <div class="changelog-entry">
 <span class="changelog-date">Jun 9</span>
 <div class="changelog-content">
