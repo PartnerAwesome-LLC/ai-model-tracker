@@ -474,10 +474,10 @@ footer a:hover { color: var(--text-muted); }
 <div class="header">
 <div>
 <h1>AI Model Tracker</h1>
-<p style="font-size:var(--text-sm);color:var(--text-muted);margin-top:var(--space-1);">GPT-5.5 · Claude Sonnet 4.6 · Gemini 3.1 Pro</p>
+<p style="font-size:var(--text-sm);color:var(--text-muted);margin-top:var(--space-1);">GPT-5.5 · Claude Sonnet 5 · Gemini 3.1 Pro</p>
 </div>
 <div class="header-meta">
-<span class="last-updated" id="lastUpdated">Updated: June 16, 2026</span>
+<span class="last-updated" id="lastUpdated">Updated: July 1, 2026</span>
 <button aria-label="Switch theme" class="theme-toggle" data-theme-toggle="">
 <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
 </button>
@@ -508,19 +508,19 @@ footer a:hover { color: var(--text-muted); }
 <div class="spec-row"><span class="spec-label">Max output</span><span class="spec-value">128K tokens</span></div>
 <div class="spec-row"><span class="spec-label">Knowledge cutoff</span><span class="spec-value">Dec 1, 2025</span></div>
 </div>
-<!-- Claude Sonnet 4.6 -->
+<!-- Claude Sonnet 5 -->
 <div class="model-card anthropic">
 <div class="provider">Anthropic</div>
-<div class="model-name">Claude Sonnet 4.6</div>
-<div class="release-date">Released: February 17, 2026</div>
-<div class="spec-row"><span class="spec-label">Context</span><span class="spec-value">1M tokens (beta)</span></div>
-<div class="spec-row"><span class="spec-label">Input</span><span class="spec-value">$3.00 / 1M</span></div>
-<div class="spec-row"><span class="spec-label">Output</span><span class="spec-value">$15.00 / 1M</span></div>
-<div class="spec-row"><span class="spec-label">Max output</span><span class="spec-value">128K tokens</span></div>
-<div class="spec-row"><span class="spec-label">Modality</span><span class="spec-value">Text + Image in</span></div>
-<div class="spec-row"><span class="spec-label">Reasoning</span><span class="spec-value">Hybrid (extended thinking)</span></div>
-<div class="spec-row"><span class="spec-label">Computer use</span><span class="spec-value">Yes (improved)</span></div>
-<div class="spec-row"><span class="spec-label">Caching savings</span><span class="spec-value">Up to 90%</span></div>
+<div class="model-name">Claude Sonnet 5</div>
+<div class="release-date">Released: June 30, 2026</div>
+<div class="spec-row"><span class="spec-label">Model ID</span><span class="spec-value">claude-sonnet-5</span></div>
+<div class="spec-row"><span class="spec-label">Input (intro thru Aug 31)</span><span class="spec-value">$2.00 / 1M</span></div>
+<div class="spec-row"><span class="spec-label">Output (intro thru Aug 31)</span><span class="spec-value">$10.00 / 1M</span></div>
+<div class="spec-row"><span class="spec-label">Input (standard)</span><span class="spec-value">$3.00 / 1M</span></div>
+<div class="spec-row"><span class="spec-label">Output (standard)</span><span class="spec-value">$15.00 / 1M</span></div>
+<div class="spec-row"><span class="spec-label">Positioning</span><span class="spec-value">Most agentic Sonnet; ~Opus 4.8 quality</span></div>
+<div class="spec-row"><span class="spec-label">Tokenizer</span><span class="spec-value">Updated (1.0–1.35× vs 4.6)</span></div>
+<div class="spec-row"><span class="spec-label">Availability</span><span class="spec-value">Default on Free/Pro; API, Bedrock, MS Foundry; Vertex soon</span></div>
 </div>
 <!-- Gemini 3.1 Pro -->
 <div class="model-card google">
@@ -547,7 +547,7 @@ footer a:hover { color: var(--text-muted); }
 <tr>
 <th>Dimension</th>
 <th class="openai">GPT-5.4</th>
-<th class="anthropic">Claude Sonnet 4.6</th>
+<th class="anthropic">Claude Sonnet 5</th>
 <th class="google">Gemini 3.1 Pro</th>
 </tr>
 </thead>
@@ -672,6 +672,27 @@ footer a:hover { color: var(--text-muted); }
 <div class="tab-panel" id="tab-changelog">
 <h2 class="section-title">Running Changelog</h2>
 <div class="changelog">
+<div class="changelog-entry">
+<span class="changelog-date">Jun 30</span>
+<div class="changelog-content">
+<div class="title"><span class="badge release anthropic">Anthropic</span> Claude Sonnet 5 launched — flagship agentic model, ~Opus 4.8 quality at Sonnet price</div>
+<div class="detail"><strong>Anthropic released Claude Sonnet 5</strong> (<code>claude-sonnet-5</code>), positioned as its <strong>most agentic Sonnet yet</strong> with performance <em>close to Opus 4.8</em> at meaningfully lower prices. Pricing: <strong>introductory $2/$10 per 1M input/output through Aug 31, 2026</strong>, then standard <strong>$3/$15 per 1M</strong>. Key upgrades vs Sonnet 4.6: substantial gains in reasoning, tool use, coding, and knowledge work; can autonomously plan and run browsers/terminals at a level previously requiring larger models; lower hallucination and sycophancy; better prompt-injection resistance; safer default posture in agentic contexts. Anthropic cites performance comparisons on <strong>BrowseComp</strong> and <strong>OSWorld-Verified</strong> (no numeric scores in the launch page). <strong>Tokenizer note:</strong> Sonnet 5 uses an updated tokenizer that maps the same input to <strong>1.0–1.35× more tokens</strong> depending on content type — introductory pricing is calibrated so the migration is roughly cost-neutral; watch this when the intro window ends Aug 31. Availability: <strong>default model on Free and Pro plans</strong>, plus Max/Team/Enterprise, Claude Code, and the Claude Platform (native, AWS, Microsoft Foundry); Vertex coming soon. Cyber safeguards enabled by default (same as Opus 4.7/4.8). For coding/agents workloads, this is the new default — evaluate against Opus 4.8 and Sonnet 4.6 baselines before Aug 31 to lock in intro pricing. (<a href="https://www.anthropic.com/news/claude-sonnet-5" rel="noopener" target="_blank">Anthropic launch</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Jun 30</span>
+<div class="changelog-content">
+<div class="title"><span class="badge release anthropic">Anthropic</span> Fable 5 returns globally July 1 — export-control block lifted</div>
+<div class="detail">Anthropic announced <strong>Claude Fable 5 returns globally on July 1, 2026</strong>, ending the 19-day shutdown that began June 12 after a US government export-control directive. Anthropic characterized the original directive as a <em>misunderstanding</em> and has been working to restore access. Alongside the restore, Anthropic proposed an <strong>industry-wide framework for scoring jailbreak severity</strong>, developed with <strong>Amazon, Microsoft, Google, and other Glasswing partners</strong>. Existing <strong>30-day customer data retention</strong> requirement for Fable remains in place as a defense-in-depth measure. If you had pipelines routing away from <code>claude-fable-5</code> or <code>claude-mythos-5</code> IDs, they should work again starting July 1 — but keep the Opus 4.8 fallback wired in case future export-control actions recur. This resolution is precedent-setting: first frontier model globally disabled by US export controls, then restored via diplomatic clarification. (<a href="https://www.anthropic.com/news/fable-mythos-access" rel="noopener" target="_blank">Anthropic statement</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Jun 30</span>
+<div class="changelog-content">
+<div class="title"><span class="badge release google">Google</span> Gemini Omni Flash preview + Nano Banana Lite GA</div>
+<div class="detail">Two Gemini releases: (1) <strong><code>gemini-omni-flash-preview</code></strong> — a high-performance multimodal model for <strong>high-speed video generation and conversational video editing</strong> via the <strong>Interactions API</strong>. Generates <strong>3–10 second 720p videos</strong> from text or animates still images, with conversational edits/refinements on the output. Timely landing given the Veo 2.0/3.0 shutdown on <strong>June 30, 2026</strong> — Omni Flash is a plausible replacement path alongside Veo 3.1. Pricing and availability regions not yet published. (2) <strong><code>gemini-3.1-flash-lite-image</code> (Nano Banana Lite)</strong> promoted to <strong>GA</strong> — built-in multimodal model optimized for <strong>ultra-low latency and cost-effective image generation and editing</strong>. Good candidate to prototype against ahead of the <strong>Aug 17, 2026 Imagen 4.0 shutdown</strong>. Pricing per image not yet published. (<a href="https://ai.google.dev/gemini-api/docs/changelog" rel="noopener" target="_blank">Gemini API changelog</a>)</div>
+</div>
+</div>
 <div class="changelog-entry">
 <span class="changelog-date">Jun 15</span>
 <div class="changelog-content">
