@@ -477,7 +477,7 @@ footer a:hover { color: var(--text-muted); }
 <p style="font-size:var(--text-sm);color:var(--text-muted);margin-top:var(--space-1);">GPT-5.5 · Claude Sonnet 5 · Gemini 3.1 Pro</p>
 </div>
 <div class="header-meta">
-<span class="last-updated" id="lastUpdated">Updated: July 1, 2026</span>
+<span class="last-updated" id="lastUpdated">Updated: July 2, 2026</span>
 <button aria-label="Switch theme" class="theme-toggle" data-theme-toggle="">
 <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
 </button>
@@ -672,6 +672,13 @@ footer a:hover { color: var(--text-muted); }
 <div class="tab-panel" id="tab-changelog">
 <h2 class="section-title">Running Changelog</h2>
 <div class="changelog">
+<div class="changelog-entry">
+<span class="changelog-date">Jul 1</span>
+<div class="changelog-content">
+<div class="title"><span class="badge release anthropic">Anthropic</span> Fable 5 redeploy details — usage caps, new safety classifier, Mythos 5 partial restore</div>
+<div class="detail">Anthropic published operational details for the Fable 5 redeploy. <strong>Availability window — through July 7:</strong> Pro, Max, Team, and <em>select</em> Enterprise plans get Fable 5 included <strong>up to 50% of weekly usage limits</strong>; <strong>premium Enterprise seats</strong> get Fable 5 included in the subscription drawing from each member's seat usage at no extra cost. <strong>Standard Enterprise seats</strong> get <strong>no included allowance</strong> — access requires <strong>usage credits</strong> from day one. <strong>After July 7:</strong> Fable 5 moves to <strong>usage credits only</strong> across all plans; teams without credits enabled lose access. <strong>New safety classifier</strong> (trained in response to the Amazon report that triggered the export-control action): blocks the specific attack technique in <strong>&gt;99% of cases</strong>. <strong>Trade-off:</strong> the classifier flags <strong>benign requests more often during routine coding and debugging</strong> — blocked requests are routed to <strong>Opus 4.8</strong> automatically with a user notification. Anthropic says it will keep refining to reduce false positives. <strong>Availability:</strong> globally on Claude Platform, Claude.ai, Claude Code, and Claude Cowork starting <strong>July 1</strong>; AWS, Google Cloud, and Microsoft Foundry re-enablement "as quickly as possible." <strong>Mythos 5:</strong> restored for a <em>set of US organizations</em> after US government approval on <strong>June 26</strong>; broader Glasswing (international) access still being coordinated. <strong>Action items:</strong> (1) if you're on Pro/Max/Team, plan for the Jul 7 cliff — enable usage credits or reroute production traffic to Sonnet 5 / Opus 4.8 before then; (2) expect elevated false-positive fallback to Opus 4.8 in coding pipelines — budget accordingly ($5/$25 Opus standard vs $2/$10 Sonnet 5 intro pricing); (3) log classifier-block events to measure real-world false-positive rate on your workload. (<a href="https://www.anthropic.com/news/redeploying-fable-5" rel="noopener" target="_blank">Redeploying Fable 5</a>)</div>
+</div>
+</div>
 <div class="changelog-entry">
 <span class="changelog-date">Jun 30</span>
 <div class="changelog-content">
