@@ -455,7 +455,7 @@ footer a:hover { color: var(--text-muted); }
 <p style="font-size:var(--text-sm);color:var(--text-muted);margin-top:var(--space-1);">GPT-5.5 · Claude Sonnet 5 · Gemini 3.1 Pro</p>
 </div>
 <div class="header-meta">
-<span class="last-updated" id="lastUpdated">Updated: July 2, 2026</span>
+<span class="last-updated" id="lastUpdated">Updated: July 3, 2026</span>
 <button aria-label="Switch theme" class="theme-toggle" data-theme-toggle="">
 <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
 </button>
@@ -650,6 +650,13 @@ footer a:hover { color: var(--text-muted); }
 <div class="tab-panel" id="tab-changelog">
 <h2 class="section-title">Running Changelog</h2>
 <div class="changelog">
+<div class="changelog-entry">
+<span class="changelog-date">Jul 2</span>
+<div class="changelog-content">
+<div class="title"><span class="badge release anthropic">Anthropic</span> Fable 5 cyber safeguards detail + Cyber Jailbreak Severity (CJS) framework proposed</div>
+<div class="detail">Anthropic published operational detail on the Fable 5 cyber classifiers introduced with the July 1 redeploy, and proposed a first-draft <strong>Cyber Jailbreak Severity (CJS) framework</strong> for the industry. <strong>Four classifier tiers:</strong> Prohibited (block) — destructive impact, cyber-physical sabotage, malware development/delivery, offensive infrastructure, backbone attacks; High-risk dual use (block) — pen testing, red-team, exploit dev, privilege escalation, ICS/SCADA assessments, VM escapes; Low-risk dual use (monitor, sometimes block) — OSINT, vuln identification other tools already do, SSL/TLS testing; Benign (allow, monitor) — secure coding, debugging, defensive config, SOC analysis, threat hunting, incident response, malware reverse engineering, education. <strong>CJS scale:</strong> 5 levels (CJS-0 to CJS-4, None to Critical), logarithmic, scored on 4 axes: capability gain (0–4), breadth (0–2), ease of weaponization (0–2), discoverability (0–2). Initial mapping: 0 = CJS-0, 1–3.5 = CJS-1, 4–6.5 = CJS-2, 7–8.5 = CJS-3, 9–10 = CJS-4. Final score can be raised but not lowered. <strong>Reporting:</strong> feedback to cyber-safeguards@anthropic.com; jailbreak submissions via Anthropic's HackerOne. <strong>Action items:</strong> (1) if your Claude Code / Claude Platform workload is in the low-risk dual-use zone (OSINT, vuln ID, SSL/TLS testing), expect occasional blocks even after the Jul 1 tuning — keep the Opus 4.8 fallback wired; (2) benign categories are explicit — reverse engineering malware, SOC analysis, and threat hunting are all supposed to pass, so file HackerOne reports when they don't so Anthropic can dial in the classifier; (3) the CJS framework is a public draft — worth reading if you evaluate frontier-model risk. (<a href="https://www.anthropic.com/news/fable-safeguards-jailbreak-framework" rel="noopener" target="_blank">Anthropic post</a>)</div>
+</div>
+</div>
 <div class="changelog-entry">
 <span class="changelog-date">Jul 1</span>
 <div class="changelog-content">
