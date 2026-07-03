@@ -1,0 +1,1253 @@
+<style data-pa-ai-tracker="1">
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+.pa-ai-tracker-embed {
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  --text-xs: clamp(0.6875rem, 0.65rem + 0.2vw, 0.8125rem);
+  --text-sm: clamp(0.8125rem, 0.78rem + 0.15vw, 0.875rem);
+  --text-base: clamp(0.875rem, 0.85rem + 0.12vw, 0.9375rem);
+  --text-lg: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+  --text-xl: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
+  --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem;
+  --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem;
+  --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem;
+  --radius-sm: 0.375rem; --radius-md: 0.5rem; --radius-lg: 0.75rem;
+  --transition: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] {
+  --bg: #0c0d10;
+  --surface: #14151a;
+  --surface-2: #1a1b22;
+  --surface-3: #22232c;
+  --border: #2a2b36;
+  --border-subtle: #1e1f28;
+  --text: #e2e4ea;
+  --text-muted: #888a96;
+  --text-faint: #555760;
+  --accent-openai: #10a37f;
+  --accent-openai-bg: rgba(16, 163, 127, 0.08);
+  --accent-anthropic: #d4a574;
+  --accent-anthropic-bg: rgba(212, 165, 116, 0.08);
+  --accent-google: #4285f4;
+  --accent-google-bg: rgba(66, 133, 244, 0.08);
+  --badge-new: #22c55e;
+  --badge-change: #f59e0b;
+  --badge-deprecation: #ef4444;
+  --badge-new-bg: rgba(34, 197, 94, 0.1);
+  --badge-change-bg: rgba(245, 158, 11, 0.1);
+  --badge-deprecation-bg: rgba(239, 68, 68, 0.1);
+  --shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+[data-theme="light"] {
+  --bg: #f5f6f8;
+  --surface: #ffffff;
+  --surface-2: #f0f1f4;
+  --surface-3: #e8e9ee;
+  --border: #d4d6de;
+  --border-subtle: #e8e9ee;
+  --text: #1a1c24;
+  --text-muted: #6b6e7a;
+  --text-faint: #9a9ca8;
+  --accent-openai: #0d8c6d;
+  --accent-openai-bg: rgba(13, 140, 109, 0.06);
+  --accent-anthropic: #b88a54;
+  --accent-anthropic-bg: rgba(184, 138, 84, 0.06);
+  --accent-google: #3570d4;
+  --accent-google-bg: rgba(53, 112, 212, 0.06);
+  --badge-new: #16a34a;
+  --badge-change: #d97706;
+  --badge-deprecation: #dc2626;
+  --badge-new-bg: rgba(22, 163, 74, 0.08);
+  --badge-change-bg: rgba(217, 119, 6, 0.08);
+  --badge-deprecation-bg: rgba(220, 38, 38, 0.08);
+  --shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.pa-ai-tracker-embed {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+.pa-ai-tracker-embed {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.55;
+  min-height: 100dvh;
+}
+
+/* ---- Layout ---- */
+.dashboard {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: var(--space-6) var(--space-4);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-8);
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.header h1 {
+  font-size: var(--text-xl);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.header-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.last-updated {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+.theme-toggle {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  padding: var(--space-1) var(--space-2);
+  cursor: pointer;
+  font-size: var(--text-sm);
+  transition: all var(--transition);
+}
+.theme-toggle:hover { color: var(--text); border-color: var(--text-muted); }
+
+/* ---- Model Overview Grid ---- */
+.model-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+
+@media (max-width: 860px) {
+  .model-grid { grid-template-columns: 1fr; }
+}
+
+.model-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  position: relative;
+  overflow: hidden;
+  transition: border-color var(--transition);
+}
+.model-card:hover { border-color: var(--text-faint); }
+
+.model-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+}
+.model-card.openai::before { background: var(--accent-openai); }
+.model-card.anthropic::before { background: var(--accent-anthropic); }
+.model-card.google::before { background: var(--accent-google); }
+
+.model-card .provider {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: var(--space-1);
+}
+.model-card.openai .provider { color: var(--accent-openai); }
+.model-card.anthropic .provider { color: var(--accent-anthropic); }
+.model-card.google .provider { color: var(--accent-google); }
+
+.model-card .model-name {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  margin-bottom: var(--space-3);
+  letter-spacing: -0.01em;
+}
+
+.model-card .release-date {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  margin-bottom: var(--space-4);
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  padding: var(--space-2) 0;
+  border-top: 1px solid var(--border-subtle);
+  font-size: var(--text-sm);
+}
+.spec-row:last-child { border-bottom: 1px solid var(--border-subtle); }
+.spec-label { color: var(--text-muted); }
+.spec-value { font-weight: 600; font-family: var(--font-mono); font-size: var(--text-xs); }
+
+/* ---- Comparison Table ---- */
+.section-title {
+  font-size: var(--text-lg);
+  font-weight: 700;
+  margin-bottom: var(--space-4);
+  letter-spacing: -0.01em;
+}
+
+.comparison-wrapper {
+  overflow-x: auto;
+  margin-bottom: var(--space-8);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+  min-width: 700px;
+}
+
+.comparison-table th {
+  text-align: left;
+  padding: var(--space-3) var(--space-4);
+  font-weight: 600;
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+}
+.comparison-table th.openai { color: var(--accent-openai); }
+.comparison-table th.anthropic { color: var(--accent-anthropic); }
+.comparison-table th.google { color: var(--accent-google); }
+
+.comparison-table td {
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--border-subtle);
+  vertical-align: top;
+}
+
+.comparison-table tr:last-child td { border-bottom: none; }
+
+.comparison-table td:first-child {
+  font-weight: 500;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.comparison-table .mono {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+}
+
+.comparison-table .highlight {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.comparison-table .winner {
+  position: relative;
+}
+.comparison-table .winner::after {
+  content: '★';
+  margin-left: 4px;
+  font-size: 0.7em;
+  opacity: 0.6;
+}
+
+/* ---- Use Case Recommendations ---- */
+.usecase-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-8);
+}
+@media (max-width: 700px) {
+  .usecase-grid { grid-template-columns: 1fr; }
+}
+
+.usecase-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+}
+
+.usecase-card h3 {
+  font-size: var(--text-base);
+  font-weight: 700;
+  margin-bottom: var(--space-3);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.usecase-card .icon {
+  font-size: var(--text-lg);
+}
+
+.usecase-card .rec {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+.usecase-card .rec strong { color: var(--text); font-weight: 600; }
+
+/* ---- Changelog ---- */
+.changelog {
+  margin-bottom: var(--space-8);
+}
+
+.changelog-entry {
+  display: flex;
+  gap: var(--space-4);
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--border-subtle);
+  align-items: flex-start;
+}
+.changelog-entry:last-child { border-bottom: none; }
+
+.changelog-date {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-faint);
+  white-space: nowrap;
+  min-width: 90px;
+  padding-top: 2px;
+}
+
+.changelog-content {
+  flex: 1;
+}
+
+.changelog-content .title {
+  font-weight: 600;
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-1);
+}
+
+.changelog-content .detail {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.badge {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-right: var(--space-2);
+  vertical-align: middle;
+}
+.badge.new { background: var(--badge-new-bg); color: var(--badge-new); }
+.badge.change { background: var(--badge-change-bg); color: var(--badge-change); }
+.badge.deprecation { background: var(--badge-deprecation-bg); color: var(--badge-deprecation); }
+.badge.openai { background: var(--accent-openai-bg); color: var(--accent-openai); }
+.badge.anthropic { background: var(--accent-anthropic-bg); color: var(--accent-anthropic); }
+.badge.google { background: var(--accent-google-bg); color: var(--accent-google); }
+
+/* ---- API Deprecation Banner ---- */
+.deprecation-banner {
+  background: var(--badge-deprecation-bg);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4) var(--space-5);
+  margin-bottom: var(--space-8);
+}
+.deprecation-banner h3 {
+  font-size: var(--text-base);
+  font-weight: 700;
+  color: var(--badge-deprecation);
+  margin-bottom: var(--space-2);
+}
+.deprecation-banner ul {
+  list-style: none;
+  padding: 0;
+}
+.deprecation-banner li {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  padding: var(--space-1) 0;
+  padding-left: var(--space-4);
+  position: relative;
+}
+.deprecation-banner li::before {
+  content: '→';
+  position: absolute;
+  left: 0;
+  color: var(--badge-deprecation);
+}
+
+/* ---- Footer ---- */
+footer {
+  text-align: center;
+  padding: var(--space-8) 0 var(--space-4);
+  border-top: 1px solid var(--border-subtle);
+}
+footer a {
+  color: var(--text-faint);
+  text-decoration: none;
+  font-size: var(--text-xs);
+  transition: color var(--transition);
+}
+footer a:hover { color: var(--text-muted); }
+
+/* ---- Tab nav ---- */
+.tab-nav {
+  display: flex;
+  gap: var(--space-1);
+  margin-bottom: var(--space-6);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0;
+  overflow-x: auto;
+}
+.tab-btn {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+.tab-btn:hover { color: var(--text); }
+.tab-btn.active {
+  color: var(--text);
+  border-bottom-color: var(--text);
+}
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+</style>
+<div class="pa-ai-tracker-embed">
+
+<div class="dashboard">
+<!-- Header -->
+<div class="header">
+<div>
+<h1>AI Model Tracker</h1>
+<p style="font-size:var(--text-sm);color:var(--text-muted);margin-top:var(--space-1);">GPT-5.5 · Claude Sonnet 5 · Gemini 3.1 Pro</p>
+</div>
+<div class="header-meta">
+<span class="last-updated" id="lastUpdated">Updated: July 2, 2026</span>
+<button aria-label="Switch theme" class="theme-toggle" data-theme-toggle="">
+<svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
+</button>
+</div>
+</div>
+<!-- Tab Navigation -->
+<nav class="tab-nav">
+<button class="tab-btn active" data-tab="overview">Overview</button>
+<button class="tab-btn" data-tab="comparison">Side-by-Side</button>
+<button class="tab-btn" data-tab="usecases">Use Cases</button>
+<button class="tab-btn" data-tab="changelog">Changelog</button>
+<button class="tab-btn" data-tab="deprecations">Deprecations</button>
+</nav>
+<!-- Tab: Overview -->
+<div class="tab-panel active" id="tab-overview">
+<div class="model-grid">
+<!-- GPT-5.5 -->
+<div class="model-card openai">
+<div class="provider">OpenAI</div>
+<div class="model-name">GPT-5.5</div>
+<div class="release-date">Released: April 24, 2026</div>
+<div class="spec-row"><span class="spec-label">Context</span><span class="spec-value">1.05M tokens</span></div>
+<div class="spec-row"><span class="spec-label">Input</span><span class="spec-value">$5.00 / 1M</span></div>
+<div class="spec-row"><span class="spec-label">Output</span><span class="spec-value">$30.00 / 1M</span></div>
+<div class="spec-row"><span class="spec-label">Cached input</span><span class="spec-value">$0.50 / 1M</span></div>
+<div class="spec-row"><span class="spec-label">Modality</span><span class="spec-value">Text + Image in</span></div>
+<div class="spec-row"><span class="spec-label">Reasoning</span><span class="spec-value">5-level (none→xhigh)</span></div>
+<div class="spec-row"><span class="spec-label">Max output</span><span class="spec-value">128K tokens</span></div>
+<div class="spec-row"><span class="spec-label">Knowledge cutoff</span><span class="spec-value">Dec 1, 2025</span></div>
+</div>
+<!-- Claude Sonnet 5 -->
+<div class="model-card anthropic">
+<div class="provider">Anthropic</div>
+<div class="model-name">Claude Sonnet 5</div>
+<div class="release-date">Released: June 30, 2026</div>
+<div class="spec-row"><span class="spec-label">Model ID</span><span class="spec-value">claude-sonnet-5</span></div>
+<div class="spec-row"><span class="spec-label">Input (intro thru Aug 31)</span><span class="spec-value">$2.00 / 1M</span></div>
+<div class="spec-row"><span class="spec-label">Output (intro thru Aug 31)</span><span class="spec-value">$10.00 / 1M</span></div>
+<div class="spec-row"><span class="spec-label">Input (standard)</span><span class="spec-value">$3.00 / 1M</span></div>
+<div class="spec-row"><span class="spec-label">Output (standard)</span><span class="spec-value">$15.00 / 1M</span></div>
+<div class="spec-row"><span class="spec-label">Positioning</span><span class="spec-value">Most agentic Sonnet; ~Opus 4.8 quality</span></div>
+<div class="spec-row"><span class="spec-label">Tokenizer</span><span class="spec-value">Updated (1.0–1.35× vs 4.6)</span></div>
+<div class="spec-row"><span class="spec-label">Availability</span><span class="spec-value">Default on Free/Pro; API, Bedrock, MS Foundry; Vertex soon</span></div>
+</div>
+<!-- Gemini 3.1 Pro -->
+<div class="model-card google">
+<div class="provider">Google</div>
+<div class="model-name">Gemini 3.1 Pro</div>
+<div class="release-date">Released: February 19, 2026</div>
+<div class="spec-row"><span class="spec-label">Context</span><span class="spec-value">1M tokens</span></div>
+<div class="spec-row"><span class="spec-label">Input (≤200K)</span><span class="spec-value">$2.00 / 1M</span></div>
+<div class="spec-row"><span class="spec-label">Output (≤200K)</span><span class="spec-value">$12.00 / 1M</span></div>
+<div class="spec-row"><span class="spec-label">Input (&gt;200K)</span><span class="spec-value">$4.00 / 1M</span></div>
+<div class="spec-row"><span class="spec-label">Modality</span><span class="spec-value">Text, Image, Video, Audio</span></div>
+<div class="spec-row"><span class="spec-label">Reasoning</span><span class="spec-value">3 thinking levels</span></div>
+<div class="spec-row"><span class="spec-label">ARC-AGI-2</span><span class="spec-value">77.1%</span></div>
+<div class="spec-row"><span class="spec-label">Max output</span><span class="spec-value">64K tokens</span></div>
+</div>
+</div>
+</div>
+<!-- Tab: Comparison -->
+<div class="tab-panel" id="tab-comparison">
+<h2 class="section-title">Side-by-Side Comparison</h2>
+<div class="comparison-wrapper">
+<table class="comparison-table">
+<thead>
+<tr>
+<th>Dimension</th>
+<th class="openai">GPT-5.4</th>
+<th class="anthropic">Claude Sonnet 5</th>
+<th class="google">Gemini 3.1 Pro</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Release date</td>
+<td class="mono">Mar 5, 2026</td>
+<td class="mono">Feb 17, 2026</td>
+<td class="mono">Feb 19, 2026</td>
+</tr>
+<tr>
+<td>Context window</td>
+<td class="mono highlight winner">1.05M tokens</td>
+<td class="mono">1M (beta, API only)</td>
+<td class="mono">1M tokens</td>
+</tr>
+<tr>
+<td>Max output</td>
+<td class="mono">Not disclosed</td>
+<td class="mono highlight winner">128K tokens</td>
+<td class="mono">64K tokens</td>
+</tr>
+<tr>
+<td>Input price / 1M</td>
+<td class="mono">$2.50</td>
+<td class="mono">$3.00</td>
+<td class="mono highlight winner">$2.00</td>
+</tr>
+<tr>
+<td>Output price / 1M</td>
+<td class="mono">$15.00</td>
+<td class="mono">$15.00</td>
+<td class="mono highlight winner">$12.00</td>
+</tr>
+<tr>
+<td>Cached input price</td>
+<td class="mono highlight winner">$0.25 / 1M</td>
+<td class="mono">90% savings (est. ~$0.30)</td>
+<td class="mono">Supported (tiered)</td>
+</tr>
+<tr>
+<td>Input modalities</td>
+<td>Text, Image</td>
+<td>Text, Image</td>
+<td class="highlight winner">Text, Image, Video, Audio</td>
+</tr>
+<tr>
+<td>Reasoning control</td>
+<td class="highlight winner">5-level configurable</td>
+<td>Hybrid extended thinking</td>
+<td>3 thinking levels</td>
+</tr>
+<tr>
+<td>Computer use</td>
+<td class="highlight">Native API</td>
+<td class="highlight">Improved in 4.6</td>
+<td>Not available</td>
+</tr>
+<tr>
+<td>SWE-bench Verified</td>
+<td class="mono highlight winner">~80.0%</td>
+<td class="mono">Approaches Opus-level</td>
+<td class="mono">Not reported</td>
+</tr>
+<tr>
+<td>ARC-AGI-2</td>
+<td class="mono">Not reported</td>
+<td class="mono">Not reported</td>
+<td class="mono highlight winner">77.1%</td>
+</tr>
+<tr>
+<td>GPQA (reasoning)</td>
+<td class="mono highlight winner">93.2% (Pro variant)</td>
+<td class="mono">Not reported</td>
+<td class="mono">Not reported</td>
+</tr>
+<tr>
+<td>Batch pricing</td>
+<td>50% off standard</td>
+<td>50% off standard</td>
+<td>Available</td>
+</tr>
+<tr>
+<td>Availability</td>
+<td>API + ChatGPT Pro/Plus</td>
+<td>API + Claude.ai + Bedrock + Vertex + Foundry</td>
+<td>API + Gemini App + Vertex</td>
+</tr>
+<tr>
+<td>Pro / Premium tier</td>
+<td class="mono">$30 / $180 per 1M (GPT-5.4 Pro)</td>
+<td class="mono">$15 / $75 per 1M (Opus 4.6)</td>
+<td class="mono">Deep Think (Ultra subs)</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Tab: Use Cases -->
+<div class="tab-panel" id="tab-usecases">
+<h2 class="section-title">What Matters For Your Stack</h2>
+<div class="usecase-grid">
+<div class="usecase-card">
+<h3><span class="icon">⚙</span> Coding</h3>
+<p class="rec"><strong>Best pick: GPT-5.4</strong> for complex, multi-file codebases. ~80% SWE-bench and 5-level reasoning control let you dial cost vs. quality per request. <strong>Sonnet 4.6</strong> is the value play at $3 input — devs in early access often preferred it over Opus for frontend and financial code. Gemini 3.1 Pro is strong for agentic coding workflows with its efficient token usage.</p>
+</div>
+<div class="usecase-card">
+<h3><span class="icon">🤖</span> Agents</h3>
+<p class="rec"><strong>Best pick: GPT-5.4</strong> leads with native computer-use API and configurable reasoning (dial down for fast tool-calling loops, dial up for planning). <strong>Sonnet 4.6</strong> has improved computer use and agent planning — great for multi-step browser automation. Gemini 3.1 Pro excels at long-horizon tool orchestration with its medium thinking mode.</p>
+</div>
+<div class="usecase-card">
+<h3><span class="icon">📚</span> RAG</h3>
+<p class="rec"><strong>Best pick: Gemini 3.1 Pro</strong> — cheapest per-token ($2/$12) with a full 1M context window and native multimodal grounding (text, image, video, audio). Great for document-heavy pipelines. <strong>GPT-5.4</strong> at 1.05M context is the largest window but costs more. Sonnet 4.6's 128K max output is ideal when you need long-form synthesis from retrieved docs.</p>
+</div>
+<div class="usecase-card">
+<h3><span class="icon">🎨</span> Multimodal Apps</h3>
+<p class="rec"><strong>Best pick: Gemini 3.1 Pro</strong> is the clear leader — native text, image, video, and audio input with unified embeddings (gemini-embedding-2). GPT-5.4 handles text + image but no video/audio. Sonnet 4.6 is text + image only. For multimodal RAG or video analysis, Gemini is the only real option at the frontier.</p>
+</div>
+</div>
+</div>
+<!-- Tab: Changelog -->
+<div class="tab-panel" id="tab-changelog">
+<h2 class="section-title">Running Changelog</h2>
+<div class="changelog">
+<div class="changelog-entry">
+<span class="changelog-date">Jul 1</span>
+<div class="changelog-content">
+<div class="title"><span class="badge release anthropic">Anthropic</span> Fable 5 redeploy details — usage caps, new safety classifier, Mythos 5 partial restore</div>
+<div class="detail">Anthropic published operational details for the Fable 5 redeploy. <strong>Availability window — through July 7:</strong> Pro, Max, Team, and <em>select</em> Enterprise plans get Fable 5 included <strong>up to 50% of weekly usage limits</strong>; <strong>premium Enterprise seats</strong> get Fable 5 included in the subscription drawing from each member's seat usage at no extra cost. <strong>Standard Enterprise seats</strong> get <strong>no included allowance</strong> — access requires <strong>usage credits</strong> from day one. <strong>After July 7:</strong> Fable 5 moves to <strong>usage credits only</strong> across all plans; teams without credits enabled lose access. <strong>New safety classifier</strong> (trained in response to the Amazon report that triggered the export-control action): blocks the specific attack technique in <strong>&gt;99% of cases</strong>. <strong>Trade-off:</strong> the classifier flags <strong>benign requests more often during routine coding and debugging</strong> — blocked requests are routed to <strong>Opus 4.8</strong> automatically with a user notification. Anthropic says it will keep refining to reduce false positives. <strong>Availability:</strong> globally on Claude Platform, Claude.ai, Claude Code, and Claude Cowork starting <strong>July 1</strong>; AWS, Google Cloud, and Microsoft Foundry re-enablement "as quickly as possible." <strong>Mythos 5:</strong> restored for a <em>set of US organizations</em> after US government approval on <strong>June 26</strong>; broader Glasswing (international) access still being coordinated. <strong>Action items:</strong> (1) if you're on Pro/Max/Team, plan for the Jul 7 cliff — enable usage credits or reroute production traffic to Sonnet 5 / Opus 4.8 before then; (2) expect elevated false-positive fallback to Opus 4.8 in coding pipelines — budget accordingly ($5/$25 Opus standard vs $2/$10 Sonnet 5 intro pricing); (3) log classifier-block events to measure real-world false-positive rate on your workload. (<a href="https://www.anthropic.com/news/redeploying-fable-5" rel="noopener" target="_blank">Redeploying Fable 5</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Jun 30</span>
+<div class="changelog-content">
+<div class="title"><span class="badge release anthropic">Anthropic</span> Claude Sonnet 5 launched — flagship agentic model, ~Opus 4.8 quality at Sonnet price</div>
+<div class="detail"><strong>Anthropic released Claude Sonnet 5</strong> (<code>claude-sonnet-5</code>), positioned as its <strong>most agentic Sonnet yet</strong> with performance <em>close to Opus 4.8</em> at meaningfully lower prices. Pricing: <strong>introductory $2/$10 per 1M input/output through Aug 31, 2026</strong>, then standard <strong>$3/$15 per 1M</strong>. Key upgrades vs Sonnet 4.6: substantial gains in reasoning, tool use, coding, and knowledge work; can autonomously plan and run browsers/terminals at a level previously requiring larger models; lower hallucination and sycophancy; better prompt-injection resistance; safer default posture in agentic contexts. Anthropic cites performance comparisons on <strong>BrowseComp</strong> and <strong>OSWorld-Verified</strong> (no numeric scores in the launch page). <strong>Tokenizer note:</strong> Sonnet 5 uses an updated tokenizer that maps the same input to <strong>1.0–1.35× more tokens</strong> depending on content type — introductory pricing is calibrated so the migration is roughly cost-neutral; watch this when the intro window ends Aug 31. Availability: <strong>default model on Free and Pro plans</strong>, plus Max/Team/Enterprise, Claude Code, and the Claude Platform (native, AWS, Microsoft Foundry); Vertex coming soon. Cyber safeguards enabled by default (same as Opus 4.7/4.8). For coding/agents workloads, this is the new default — evaluate against Opus 4.8 and Sonnet 4.6 baselines before Aug 31 to lock in intro pricing. (<a href="https://www.anthropic.com/news/claude-sonnet-5" rel="noopener" target="_blank">Anthropic launch</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Jun 30</span>
+<div class="changelog-content">
+<div class="title"><span class="badge release anthropic">Anthropic</span> Fable 5 returns globally July 1 — export-control block lifted</div>
+<div class="detail">Anthropic announced <strong>Claude Fable 5 returns globally on July 1, 2026</strong>, ending the 19-day shutdown that began June 12 after a US government export-control directive. Anthropic characterized the original directive as a <em>misunderstanding</em> and has been working to restore access. Alongside the restore, Anthropic proposed an <strong>industry-wide framework for scoring jailbreak severity</strong>, developed with <strong>Amazon, Microsoft, Google, and other Glasswing partners</strong>. Existing <strong>30-day customer data retention</strong> requirement for Fable remains in place as a defense-in-depth measure. If you had pipelines routing away from <code>claude-fable-5</code> or <code>claude-mythos-5</code> IDs, they should work again starting July 1 — but keep the Opus 4.8 fallback wired in case future export-control actions recur. This resolution is precedent-setting: first frontier model globally disabled by US export controls, then restored via diplomatic clarification. (<a href="https://www.anthropic.com/news/fable-mythos-access" rel="noopener" target="_blank">Anthropic statement</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Jun 30</span>
+<div class="changelog-content">
+<div class="title"><span class="badge release google">Google</span> Gemini Omni Flash preview + Nano Banana Lite GA</div>
+<div class="detail">Two Gemini releases: (1) <strong><code>gemini-omni-flash-preview</code></strong> — a high-performance multimodal model for <strong>high-speed video generation and conversational video editing</strong> via the <strong>Interactions API</strong>. Generates <strong>3–10 second 720p videos</strong> from text or animates still images, with conversational edits/refinements on the output. Timely landing given the Veo 2.0/3.0 shutdown on <strong>June 30, 2026</strong> — Omni Flash is a plausible replacement path alongside Veo 3.1. Pricing and availability regions not yet published. (2) <strong><code>gemini-3.1-flash-lite-image</code> (Nano Banana Lite)</strong> promoted to <strong>GA</strong> — built-in multimodal model optimized for <strong>ultra-low latency and cost-effective image generation and editing</strong>. Good candidate to prototype against ahead of the <strong>Aug 17, 2026 Imagen 4.0 shutdown</strong>. Pricing per image not yet published. (<a href="https://ai.google.dev/gemini-api/docs/changelog" rel="noopener" target="_blank">Gemini API changelog</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Jun 15</span>
+<div class="changelog-content">
+<div class="title"><span class="badge deprecation google">Google</span> Imagen 4.0 + Veo 2.0/3.0 deprecated — Veo shutdown in 14 days</div>
+<div class="detail">Google posted a Gemini API release note deprecating the entire <strong>Imagen 4.0 family</strong> (<code>imagen-4.0-generate-001</code>, <code>imagen-4.0-ultra-generate-001</code>, <code>imagen-4.0-fast-generate-001</code>) with <strong>shutdown Aug 17, 2026</strong>, and the <strong>Veo 2.0 + Veo 3.0 video models</strong> (<code>veo-2.0-generate-001</code>, <code>veo-3.0-generate-001</code>, <code>veo-3.0-fast-generate-001</code>) with <strong>shutdown June 30, 2026 — only 14 days away</strong>. Migration: move to <strong>Veo 3.1 preview IDs</strong> (<code>veo-3.1-generate-preview</code>, <code>veo-3.1-fast-generate-preview</code>) or <strong>Veo 3.1 GA via Gemini Enterprise Agent Platform</strong>. For Imagen, expect a successor announcement before Aug 17; in the meantime, prototype on <code>gemini-3.1-flash-image</code> / <code>gemini-3-pro-image</code> for image generation if your use case fits. <strong>The Veo deadline is tight</strong> — audit any video pipelines this week. (<a href="https://ai.google.dev/gemini-api/docs/changelog" rel="noopener" target="_blank">Gemini API changelog</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Jun 11</span>
+<div class="changelog-content">
+<div class="title"><span class="badge deprecation openai">OpenAI</span> GPT-5 + o3 snapshots deprecated — full shutdown Dec 11, 2026</div>
+<div class="detail">OpenAI deprecated the entire <strong>GPT-5 and o3 snapshot families</strong> with a hard <strong>shutdown date of Dec 11, 2026</strong>. The affected IDs and replacements: <code>gpt-5-2025-08-07</code> → <strong>gpt-5.5</strong>; <code>gpt-5-mini-2025-08-07</code> → <strong>gpt-5.4-mini</strong>; <code>gpt-5-nano-2025-08-07</code> → <strong>gpt-5.4-nano</strong>; <code>gpt-5-pro-2025-10-06</code> → <strong>gpt-5.5-pro</strong>; <code>o3-2025-04-16</code> → <strong>gpt-5.5</strong>; <code>o3-pro-2025-06-10</code> → <strong>gpt-5.5-pro</strong>. <strong>Note that o3-pro consolidates into gpt-5.5-pro</strong> — there's no longer a separate reasoning-only flagship; reasoning is unified into the 5.5 line. For coding/agents: gpt-5.5 ($5/$30 per 1M, 1.05M context) is a meaningful upgrade over gpt-5 if you haven't already migrated. For RAG/cost-sensitive workloads, gpt-5.4-mini and gpt-5.4-nano are the new floor. Six months runway is generous but pin your snapshot dates and start CI testing on 5.4/5.5 now. (<a href="https://developers.openai.com/api/docs/deprecations/" rel="noopener" target="_blank">OpenAI deprecations</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Jun 9</span>
+<div class="changelog-content">
+<div class="title"><span class="badge deprecation anthropic">Anthropic</span> Claude Fable 5 + Mythos 5 DISABLED FOR ALL CUSTOMERS — US export controls (Jun 12)</div>
+<div class="detail"><strong>Three days after GA, Anthropic disabled Claude Fable 5 and Claude Mythos 5 for all customers worldwide</strong> in response to a US export control directive received at 5:21pm ET on June 12. The directive technically targets foreign nationals, but the operational result is a full shutdown for everyone. All other Anthropic models (Sonnet 4.6, Opus 4.6/4.7/4.8) are unaffected. <strong>Restore timeline is unspecified.</strong> Original launch context (now suspended): Fable 5 was Anthropic's first GA <em>Mythos-class</em> model, with a 30-day retention requirement for safety classifiers (not used for training). If you piloted Fable 5 / Mythos 5 (including via GitHub Copilot's opt-in toggle), expect immediate hard failure on those model IDs — route around them in code or fall back to Opus 4.8. Worth tracking closely as AI export-control precedent affecting frontier models. (<a href="https://www.anthropic.com/news/fable-mythos-access" rel="noopener" target="_blank">Anthropic statement</a>, <a href="https://www.anthropic.com/news/claude-fable-5-mythos-5" rel="noopener" target="_blank">original launch</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Jun 3</span>
+<div class="changelog-content">
+<div class="title"><span class="badge deprecation openai">OpenAI</span> Agent Builder deprecated — sunset Nov 30, 2026</div>
+<div class="detail">OpenAI is winding down <strong>Agent Builder</strong> on Nov 30, 2026. Replacement path: continue with the <strong>Agents SDK</strong> (Python + TypeScript) or <strong>ChatGPT Workspace Agents</strong>. If you built agents in Agent Builder's visual canvas, plan a code-based migration over Q3/Q4. The Agents SDK is the more durable foundation — same primitives, full control, and now has TypeScript parity (shipped May 6). (<a href="https://developers.openai.com/api/docs/deprecations/" rel="noopener" target="_blank">OpenAI deprecations</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Jun 3</span>
+<div class="changelog-content">
+<div class="title"><span class="badge deprecation openai">OpenAI</span> Evals platform sunset — read-only Oct 31, full shutdown Nov 30</div>
+<div class="detail">OpenAI is sunsetting its Evals product. Two dates to track: <strong>Oct 31, 2026</strong> — existing evals become read-only (no new runs). <strong>Nov 30, 2026</strong> — the Evals dashboard and API are fully shut down. <strong>No first-party replacement announced.</strong> Export any eval results, datasets, and grading configs before Oct 31. Plan to move to OSS frameworks (OpenAI Evals OSS repo, LangSmith, Braintrust, Inspect AI) or build a thin internal eval harness against your model gateway. This is a meaningful gap — worth flagging to anyone running production eval pipelines on OpenAI Evals. (<a href="https://developers.openai.com/api/docs/deprecations/" rel="noopener" target="_blank">OpenAI deprecations</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Jun 3</span>
+<div class="changelog-content">
+<div class="title"><span class="badge deprecation openai">OpenAI</span> Reusable prompts (v1/prompts) deprecated — sunset Nov 30, 2026</div>
+<div class="detail">The <code>v1/prompts</code> API and OpenAI-managed reusable prompt objects shut down Nov 30, 2026. Replacement: move prompt content into your application code. <strong>What it means:</strong> OpenAI is exiting the prompt-registry business — treat prompts as application configuration (Git + config files, DB rows, feature-flag system) rather than an OpenAI resource. <strong>Action:</strong> inventory any code referencing <code>v1/prompts</code>, move prompts to your own store, and version them in your repo for reproducibility. (<a href="https://developers.openai.com/api/docs/deprecations/" rel="noopener" target="_blank">OpenAI deprecations</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Jun 2</span>
+<div class="changelog-content">
+<div class="title"><span class="badge deprecation openai">OpenAI</span> gpt-image-1 family deprecation: shut down Dec 1, 2026; replacement is gpt-image-2</div>
+<div class="detail">OpenAI announced shutdown of <code>gpt-image-1-mini</code>, <code>gpt-image-1.5</code>, and <code>chatgpt-image-latest</code> on <strong>Dec 1, 2026</strong>. Replacement is <code>gpt-image-2</code>. This is notable because <code>gpt-image-1</code> was the migration target for the May 12 DALL·E 2/3 shutdown — so anyone who just migrated to <code>gpt-image-1-mini</code> for cost reasons gets a second migration before year-end. Plan capacity and prompt-compatibility testing for gpt-image-2 over Q3 to avoid a rushed November cutover. No price/quality details on gpt-image-2 surfaced yet. (<a href="https://developers.openai.com/api/docs/deprecations/" rel="noopener" target="_blank">OpenAI deprecations</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Jun 1</span>
+<div class="changelog-content">
+<div class="title"><span class="badge deprecation google">Google</span> Gemini 2.0 Flash family shut down</div>
+<div class="detail">The entire Gemini 2.0 Flash family is now offline: <code>gemini-2.0-flash</code>, <code>gemini-2.0-flash-001</code>, <code>gemini-2.0-flash-lite</code>, and <code>gemini-2.0-flash-lite-001</code>. Migrate to <code>gemini-3.5-flash</code> (next-gen mid-tier, went GA May 19) or <code>gemini-3.1-flash-lite</code> (cost/latency-optimized). If anything in production, RAG pipelines, embedding workers, or agent tool-routing still references 2.0 Flash SKUs, it will now error — fix is a string change. Worth auditing today. (<a href="https://ai.google.dev/gemini-api/docs/changelog" rel="noopener" target="_blank">Gemini API changelog</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">May 28</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new anthropic">Anthropic</span> Claude Opus 4.8 launched — fast mode 2.5x faster, 3x cheaper</div>
+<div class="detail">Anthropic released <code>claude-opus-4-8</code>. Standard pricing is unchanged from Opus 4.7: <strong>$5/1M input, $25/1M output</strong>. Fast mode is the headline upgrade — <strong>2.5x speed at $10/1M input, $50/1M output</strong>, which Anthropic states is 3x cheaper than the previous fast mode tier. Three additional shipping features: (1) Messages API now accepts <code>system</code> entries inside the messages array, enabling mid-run system updates (useful for agents that need to re-scope mid-task without restarting the conversation); (2) Claude Code dynamic workflows (research preview); (3) effort control in claude.ai and Cowork. Opus 4.8 is now the top-tier choice for high-stakes reasoning and long-context coding agents — reserve for jobs where Sonnet 4.6 hits quality limits. (<a href="https://www.anthropic.com/news/claude-opus-4-8" rel="noopener" target="_blank">Anthropic news</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">May 28</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new google">Google</span> gemini-3.1-flash-image + gemini-3-pro-image go GA; video-as-context</div>
+<div class="detail">Google moved its native visual generation models to GA: <code>gemini-3.1-flash-image</code> (fast/cost-optimized) and <code>gemini-3-pro-image</code> (frontier quality). Notable new capability on Flash Image: <strong>video-as-context for video-to-image generation</strong> — pass a video and generate keyframes/derivatives without a separate vision pipeline. <strong>Preview SKUs deprecated effective May 28 and shut down June 25, 2026</strong>: migrate <code>gemini-3.1-flash-image-preview</code> → <code>gemini-3.1-flash-image</code>, and <code>gemini-3-pro-image-preview</code> → <code>gemini-3-pro-image</code>. Worth comparing against OpenAI gpt-image-1 and the older Imagen/Veo workflows. (<a href="https://ai.google.dev/gemini-api/docs/changelog" rel="noopener" target="_blank">Gemini API changelog</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">May 25</span>
+<div class="changelog-content">
+<div class="title"><span class="badge deprecation google">Google</span> gemini-3.1-flash-lite-preview shut down</div>
+<div class="detail">gemini-3.1-flash-lite-preview is offline as of May 25, 2026, as scheduled. Any code still pointing at the preview SKU will now error — migrate to the GA model name <code>gemini-3.1-flash-lite</code>. If you missed this and are seeing outages today, the swap is a string change in your model parameter; no schema or pricing differences. (<a href="https://ai.google.dev/gemini-api/docs/changelog" rel="noopener" target="_blank">Gemini API changelog</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">May 26</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new openai">OpenAI</span> Workload identity federation (no more long-lived API keys)</div>
+<div class="detail">OpenAI released <strong>workload identity federation</strong>: trusted workloads can exchange externally issued identity tokens for short-lived OpenAI access tokens without storing long-lived API keys. This is a practical security + ops win for agent backends running on managed compute (CI/CD, Kubernetes, serverless): fewer secrets to rotate, reduced blast radius, and better alignment with enterprise IAM. Action: plan migration from static OpenAI API keys for production runtimes. (<a href="https://developers.openai.com/api/docs/changelog" rel="noopener" target="_blank">OpenAI API changelog</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">May 19</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new google">Google</span> gemini-3.5-flash GA + Managed Agents preview + Antigravity Agent</div>
+<div class="detail">Three releases at once. <strong>gemini-3.5-flash is GA</strong> — next-gen mid-tier model positioned between Flash-Lite and 3.1 Pro for general coding/RAG/agent work. <strong>Managed Agents (public preview)</strong> runs autonomous, stateful agents inside secure Google-hosted Linux sandboxes — Google operates the runtime, you orchestrate. <strong>antigravity-preview-05-2026</strong> is a Managed Agent that can plan, code, manage files, and browse the web inside the sandbox. Together this is Google's enterprise answer to OpenAI Agents SDK and Anthropic Managed Agents — fully hosted, no sandbox infrastructure to run. Worth evaluating against the OpenAI/Anthropic stacks if you've been blocked on agent runtime ops. (<a href="https://ai.google.dev/gemini-api/docs/changelog" rel="noopener" target="_blank">Gemini API changelog</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">May 19</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new openai">OpenAI</span> Secure MCP Tunnel GA for enterprise</div>
+<div class="detail">Account-led GA of Secure MCP Tunnel — lets ChatGPT web, Codex, the Responses API, and AgentKit connect to private/on-prem MCP servers via a customer-hosted tunnel client. No public exposure of internal MCP endpoints, no inbound firewall holes, and works across the full OpenAI agent surface. Material unlock for regulated industries (finance, healthcare, gov) that couldn't expose internal tools to public AI APIs. Pair with self-hosted MCP servers for the most secure tool-use posture available from OpenAI today. (<a href="https://developers.openai.com/api/docs/changelog" rel="noopener" target="_blank">OpenAI API changelog</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">May 19</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new anthropic">Anthropic</span> Claude Managed Agents: self-hosted sandboxes + MCP tunnels</div>
+<div class="detail">Two major adds to Claude Managed Agents. <strong>Self-hosted sandboxes (public beta)</strong>: tool execution runs in your infrastructure (or via Cloudflare / Daytona / Modal / Vercel) while orchestration stays on Anthropic — data and code never leave customer infra. <strong>MCP tunnels (research preview)</strong>: lightweight gateway uses a single outbound connection (no inbound firewall rules, no public endpoints, encrypted end-to-end) and works in both Managed Agents and the Messages API. Same enterprise security pattern OpenAI shipped today — the three vendors are now competing on identical agent-runtime feature surfaces. (<a href="https://claude.com/blog/claude-managed-agents-updates" rel="noopener" target="_blank">Claude Managed Agents update</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">May 12</span>
+<div class="changelog-content">
+<div class="title"><span class="badge deprecation openai">OpenAI</span> DALL·E 2 and DALL·E 3 snapshots shut down today</div>
+<div class="detail">All <code>dall-e-2</code> and <code>dall-e-3</code> snapshots are shut down as of May 12, 2026. Migrate any remaining image-generation calls to <code>gpt-image-1</code> (frontier quality) or <code>gpt-image-1-mini</code> (cost/latency-optimized). Anything still pointing at DALL·E snapshots will now error — audit production code, marketing pipelines, and any user-facing image features. (<a href="https://developers.openai.com/api/docs/deprecations/" rel="noopener" target="_blank">OpenAI deprecations</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">May 11</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new anthropic">Anthropic</span> Claude Platform launches on AWS</div>
+<div class="detail">Anthropic announced Claude Platform on AWS — native AWS billing and IAM, with Messages, Files, Batches, Managed Agents, Skills, code execution, and tool use all supported. Big unlock for AWS-native shops: consolidated invoicing, IAM-scoped Claude access, and no separate vendor onboarding. Same Claude models (Sonnet 4.6, Opus 4.6/4.7) under the hood. Worth evaluating if you've been routing around procurement to use Anthropic direct. (<a href="https://platform.claude.com/docs/en/release-notes/overview" rel="noopener" target="_blank">Claude API release notes</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">May 11</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new openai">OpenAI</span> return_token_budget for Responses API web search</div>
+<div class="detail">New <code>return_token_budget</code> parameter on the Responses API web search tool allows GPT-5+ to spend more tokens reasoning over web search results before returning an answer. Directly relevant for deep-research agents and any RAG-over-web pipeline where the model was previously cutting reasoning short. Tune higher for harder multi-source questions; expect higher latency and token cost in exchange for answer quality. (<a href="https://developers.openai.com/api/docs/changelog" rel="noopener" target="_blank">OpenAI API changelog</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">May 7</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new openai">OpenAI</span> Realtime 2 + Realtime Translate + Realtime Whisper released</div>
+<div class="detail">Three new realtime/voice models for streaming speech agents. Realtime 2 is a speech-to-speech model with configurable reasoning. Realtime Translate handles streaming speech translation. Realtime Whisper is streaming speech-to-text. Together they round out the voice-agent stack — directly relevant for call-center bots, meeting assistants, and real-time copilots where latency and translation quality matter. (<a href="https://developers.openai.com/api/docs/changelog" rel="noopener" target="_blank">OpenAI API changelog</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">May 7</span>
+<div class="changelog-content">
+<div class="title"><span class="badge deprecation openai">OpenAI</span> Self-serve fine-tuning eligibility tightened — sunset by Jan 6, 2027</div>
+<div class="detail">OpenAI is winding down self-serve fine-tuning. Effective May 7, 2026: orgs that have never run fine-tuning can no longer create training jobs. Effective July 2, 2026: orgs that haven't run inference on a fine-tuned model in the past 60 days can no longer create new jobs. Hard cutoff Jan 6, 2027: even active customers can't create new fine-tuning jobs (inference continues until the base model is deprecated). If you depend on FT for task-specific coding/RAG models, schedule periodic inference to keep eligibility, or move to alternative customization (RFT, prompting, distillation) before July 2. (<a href="https://developers.openai.com/api/docs/deprecations/" rel="noopener" target="_blank">OpenAI deprecations</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">May 7</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new google">Google</span> gemini-3.1-flash-lite goes GA; preview shuts down May 25</div>
+<div class="detail">gemini-3.1-flash-lite is now GA — Google's speed/scale/cost workhorse for high-throughput RAG, embedding pipelines, and agent tool-routing where cost and latency dominate over peak quality. Migration timeline: gemini-3.1-flash-lite-preview deprecates May 11 and shuts down May 25. If you're still on the preview SKU, switch to the GA name within ~2 weeks to avoid outage. (<a href="https://ai.google.dev/gemini-api/docs/changelog" rel="noopener" target="_blank">Gemini API changelog</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">May 7</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new openai">OpenAI</span> OpenAI Developers plugin for Codex</div>
+<div class="detail">A small but useful plugin for Codex that surfaces Platform access and API setup guidance directly inside the coding workflow. No API breaking changes — just smoother onboarding for devs building against OpenAI inside Codex. (<a href="https://developers.openai.com/api/docs/changelog" rel="noopener" target="_blank">OpenAI API changelog</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">May 6</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new anthropic">Anthropic</span> Claude Opus API rate limits raised (effective immediately)</div>
+<div class="detail">Anthropic announced significant API rate limit increases for Claude Opus models, effective immediately. Not a model spec or pricing change, but it directly reduces throttling pain for high-volume Opus workloads (long-context coding agents, document understanding, agent orchestration). Doesn't change Sonnet 4.6 limits. (<a href="https://www.anthropic.com/news/higher-limits-spacex" rel="noopener" target="_blank">Anthropic news</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">May 6</span>
+<div class="changelog-content">
+<div class="title"><span class="badge deprecation google">Google</span> Interactions API schema change — breaking, effective May 20</div>
+<div class="detail">Gemini Interactions API is renaming <code>outputs</code> to <code>steps</code> and changing <code>response_format</code> configuration. The new schema becomes default on May 20, 2026, and the legacy schema is removed entirely on June 6, 2026. This is a breaking change for any agent framework built on the Interactions API — plan migration tests before May 20 and confirm production is updated before June 6 to avoid outages. (<a href="https://ai.google.dev/gemini-api/docs/changelog" rel="noopener" target="_blank">Gemini API changelog</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">May 6</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new openai">OpenAI</span> Agents SDK now available in TypeScript</div>
+<div class="detail">The OpenAI Agents SDK has shipped a TypeScript implementation alongside the existing Python SDK, including sandbox agents and the open-source harness. Significant for Node/TS-native agent stacks — reduces friction for web apps integrating tool-using agents and standardizes harnessing/testing patterns. If you maintain agent infrastructure in TypeScript, evaluate parity with your Python setup before migrating production workloads. (<a href="https://developers.openai.com/api/docs/changelog" rel="noopener" target="_blank">OpenAI API changelog</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">May 5</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new openai">OpenAI</span> chat-latest snapshot alias released</div>
+<div class="detail">New moving-target alias that tracks the current Instant model used in ChatGPT. Useful for evaluating ChatGPT-style behavior and quick regression checks, but explicitly NOT for production — the underlying snapshot rotates without notice. For production, keep pinning specific snapshots (or use GPT-5.5 for the recommended frontier line). (<a href="https://developers.openai.com/api/docs/changelog" rel="noopener" target="_blank">OpenAI API changelog</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">May 5</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new google">Google</span> Gemini File Search adds multimodal support + better grounding</div>
+<div class="detail">Gemini API File Search now supports image embedding and retrieval via gemini-embedding-2 — first-party image RAG without rolling your own pipeline. Grounding metadata also improved with new <code>media_id</code> and <code>page_numbers</code> fields, enabling proper image- and page-level citations in attributed-answer UIs. If you're using Gemini File Search for RAG, consider indexing images and surfacing the new metadata as inline citations. (<a href="https://ai.google.dev/gemini-api/docs/changelog" rel="noopener" target="_blank">Gemini API changelog</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">May 4</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new google">Google</span> Gemini API adds Webhooks for Batch / long-running operations</div>
+<div class="detail">Event-driven completion notifications for the Batch API and other long-running operations — no more polling. Cuts idle compute and simplifies orchestration for async workloads (batch evals, offline RAG indexing, large multimodal processing). Worth migrating any polling-based batch workflows to webhooks. (<a href="https://ai.google.dev/gemini-api/docs/changelog" rel="noopener" target="_blank">Gemini API changelog</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Apr 24</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new openai">OpenAI</span> GPT-5.5 launched — frontier reasoning at 2x the price</div>
+<div class="detail">GPT-5.5 (snapshot gpt-5.5-2026-04-23) is now available in the Responses and Chat Completions APIs. 1,050,000 token context window, 128K max output, Dec 1 2025 knowledge cutoff. Pricing: $5/1M input, $0.50 cached, $30/1M output (standard, &lt;272K context). Prompts &gt;272K input tokens are billed at 2x input / 1.5x output for the full session. Reasoning effort supports none/low/medium/high/xhigh. Marketed as OpenAI's strongest model for spreadsheet creation, polished frontend code, hard math, document understanding, tool use, and multi-source research. Roughly 2x the price of GPT-5.4 — community reports suggest output efficiency gains may partially offset the increase. Plus tier users hit token limits in minutes on heavy workloads, so budget carefully. (<a href="https://openai.com/index/introducing-gpt-5-5/" rel="noopener" target="_blank">Introducing GPT-5.5</a>, <a href="https://developers.openai.com/api/docs/models/gpt-5.5" rel="noopener" target="_blank">API docs</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Apr 24</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new openai">OpenAI</span> GPT-5.5 Pro released for highest-accuracy work</div>
+<div class="detail">GPT-5.5 Pro is available in the Responses API (not Chat Completions). Pricing: $30/1M input, $180/1M output (standard, &lt;272K context); $60/$270 per 1M for long context. Same 1M context window as GPT-5.5. Use case: high-stakes reasoning, agent orchestration, and tasks where accuracy beats latency or cost. At $180/1M output, reserve for jobs where a wrong answer is more expensive than the model. Same price as GPT-5.4 Pro — the upgrade is free at the Pro tier. (<a href="https://developers.openai.com/api/docs/pricing" rel="noopener" target="_blank">OpenAI pricing</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Apr 22</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new google">Google</span> gemini-embedding-2 goes GA</div>
+<div class="detail">gemini-embedding-2 is now generally available via the Gemini API. Production-ready multimodal embeddings for RAG, semantic search, and classification workloads — no longer preview-only.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Apr 22</span>
+<div class="changelog-content">
+<div class="title"><span class="badge deprecation openai">OpenAI</span> Legacy model snapshot deprecations</div>
+<div class="detail">OpenAI added new deprecation entries for legacy model snapshots. Check the deprecations tab and update any pinned snapshot references in production code.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Apr 21</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new google">Google</span> Deep Research Preview + Max Preview models</div>
+<div class="detail">deep-research-preview-04-2026 and deep-research-max-preview-04-2026 released. New capabilities: collaborative planning, visualization support, MCP server integration, and File Search. Designed for multi-step research agents that need tool access and structured outputs.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Apr 21</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new openai">OpenAI</span> GPT Image 2 released (gpt-image-2)</div>
+<div class="detail">OpenAI launched gpt-image-2 for /v1/images/generations and /v1/images/edits. Features token-based image pricing and Batch API support (50% discount). Replaces prior image generation endpoints for production use.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Apr 16</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new anthropic">Anthropic</span> Claude Opus 4.7 launched</div>
+<div class="detail">Anthropic released Claude Opus 4.7 via the Claude Platform. Successor to Opus 4.6 with improved reasoning and coding performance.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Apr 15</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new google">Google</span> Gemini 3.1 Flash TTS Preview (text-to-speech)</div>
+<div class="detail">Google released Gemini 3.1 Flash TTS Preview, adding native text-to-speech capabilities to the Gemini API. Relevant for voice-first agents and multimodal applications.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Apr 15</span>
+<div class="changelog-content">
+<div class="title"><span class="badge change openai">OpenAI</span> Agents SDK: sandbox execution, memory controls</div>
+<div class="detail">OpenAI Agents SDK now supports running agents in controlled sandboxes for safer code execution, plus explicit controls over when memories are created and where they’re stored. Key for compliance, per-tenant isolation, and secure coding agents.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Apr 14</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new google">Google</span> Gemini Robotics ER 1.6 Preview; 1.5 Preview shutdown Apr 30</div>
+<div class="detail">gemini-robotics-er-1.6-preview released for embodied reasoning in robotics. gemini-robotics-er-1.5-preview shut down April 30, 2026 at 9AM PST — production workloads must use 1.6.</div>
+<div class="meta">Source: <a href="https://ai.google.dev/gemini-api/docs/changelog" rel="noopener" target="_blank">Gemini API changelog</a></div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Apr 7</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new anthropic">Anthropic</span> Project Glasswing: Claude Mythos Preview (gated research)</div>
+<div class="detail">Anthropic launched a gated research preview of Claude Mythos Preview for defensive cybersecurity via Project Glasswing. Pricing for participants: $25/MTok input, $125/MTok output. Available via Claude API, AWS Bedrock, Vertex AI, and Microsoft Foundry.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Apr 6</span>
+<div class="changelog-content">
+<div class="title"><span class="badge change anthropic">Anthropic</span> Google + Broadcom compute partnership (multi-GW TPU, 2027+)</div>
+<div class="detail">Anthropic expanded its partnership with Google and Broadcom for multiple gigawatts of next-generation TPU compute starting in 2027. Signals massive infrastructure buildout for future Claude models.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Apr 2</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new google">Google</span> Gemma 4 models available via Gemini API</div>
+<div class="detail">Gemma 4 open-weight models are now accessible through the Gemini API, expanding options for self-hosted and fine-tuned deployments.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Apr 1</span>
+<div class="changelog-content">
+<div class="title"><span class="badge change google">Google</span> New inference tiers: Flex and Priority</div>
+<div class="detail">Google introduced Flex and Priority inference tiers for Gemini API, giving developers control over latency vs. cost tradeoffs in production workloads.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Mar 31</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new google">Google</span> Veo 3.1 Lite Preview + gemini-2.5-flash-lite shutdown</div>
+<div class="detail">Veo 3.1 Lite Preview (veo-3.1-lite-generate-preview) launched for cost-efficient video generation. gemini-2.5-flash-lite-preview-09-2025 has been shut down — migrate to gemini-3.1-flash-lite-preview.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Mar 26</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new google">Google</span> Gemini 3.1 Flash Live Preview (real-time audio)</div>
+<div class="detail">gemini-3.1-flash-live-preview enables audio-to-audio real-time conversations via the Live API. Key for agent-to-agent (A2A) and voice-first applications.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Mar 25</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new google">Google</span> Lyria 3 music generation models</div>
+<div class="detail">Lyria 3 models generate music from text and image prompts. Expands Gemini's multimodal capabilities into audio generation.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Mar 24</span>
+<div class="changelog-content">
+<div class="title"><span class="badge deprecation openai">OpenAI</span> Sora 2 models + Videos API deprecated (shutdown Sep 24)</div>
+<div class="detail">OpenAI announced deprecation of Sora 2 model aliases/snapshots and the entire Videos API. Shutdown date: September 24, 2026. Plan migrations now if using Sora in production.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Mar 23</span>
+<div class="changelog-content">
+<div class="title"><span class="badge change google">Google</span> AI Studio billing: Prepay and Postpay plans</div>
+<div class="detail">Google introduced Prepay and Postpay billing plans for AI Studio, giving developers more flexible payment options for Gemini API usage.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Mar 18</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new google">Google</span> Built-in tools + function calling in one call; Maps grounding for Gemini 3</div>
+<div class="detail">Gemini API now supports using Gemini’s built-in tools alongside custom function calling tools in a single request; Google Maps grounding is now supported for Gemini 3 models going forward.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Mar 17</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new openai">OpenAI</span> GPT-5.4 mini + nano released</div>
+<div class="detail">GPT-5.4 mini brings GPT-5.4-class capability to high-volume workloads with tool search, computer use, and compaction; GPT-5.4 nano is optimized for simple, high-volume tasks and supports compaction only.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Mar 16</span>
+<div class="changelog-content">
+<div class="title"><span class="badge change google">Google</span> Revamped Usage Tiers &amp; billing spend caps</div>
+<div class="detail">Google introduced new usage tier structure with billing account spend caps for Gemini API. Better control for production workloads.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Mar 12</span>
+<div class="changelog-content">
+<div class="title"><span class="badge change google">Google</span> AI Studio project-level spend caps</div>
+<div class="detail">Added project-level spend caps for Gemini API billing in AI Studio, enabling tighter cost control for production experimentation.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Mar 10</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new google">Google</span> Multimodal embedding model: gemini-embedding-2-preview</div>
+<div class="detail">First multimodal embedding model supporting text, image, video, audio, and PDF inputs in a unified embedding space. Major for multimodal RAG and unified retrieval.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Mar 10</span>
+<div class="changelog-content">
+<div class="title"><span class="badge deprecation google">Google</span> gemini-2.5-flash-lite-preview shutdown Mar 31</div>
+<div class="detail">Deprecated. Will be shut down March 31, 2026. Migrate to gemini-3.1-flash-lite-preview.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Mar 9</span>
+<div class="changelog-content">
+<div class="title"><span class="badge change google">Google</span> gemini-3-pro-preview alias redirected</div>
+<div class="detail">Gemini 3 Pro Preview was shut down; the gemini-3-pro-preview alias now points to gemini-3.1-pro-preview.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Mar 12</span>
+<div class="changelog-content">
+<div class="title"><span class="badge change openai">OpenAI</span> Sora API: 20s generations, 1080p, edits endpoint; remix deprecated</div>
+<div class="detail">Sora API expanded with character references, longer generations up to 20s, 1080p for sora-2-pro (billed at $0.70/sec), Batch API support, and a new /v1/videos/edits endpoint. /v1/videos/{video_id}/remix will be deprecated in 6 months.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Mar 5</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new openai">OpenAI</span> GPT-5.4 launched</div>
+<div class="detail">1.05M context, configurable 5-level reasoning, native computer-use API. First general-purpose model with built-in computer use. Priced at $2.50/$15 per 1M tokens. GPT-5.4 Pro at $30/$180.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Mar 4</span>
+<div class="changelog-content">
+<div class="title"><span class="badge deprecation openai">OpenAI</span> Legacy GPT-4 models deprecated Mar 26</div>
+<div class="detail">gpt-4-0314, gpt-4-1106-preview, gpt-4-0125-preview, gpt-4-turbo-preview all sunset March 26, 2026. Requests auto-route to gpt-4.1.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Mar 3</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new google">Google</span> Gemini 3.1 Flash-Lite Preview</div>
+<div class="detail">First Flash-Lite model in the Gemini 3 series. 1M context, $0.25/$1.50 pricing. Ultra-efficient for high-volume, cost-sensitive workloads.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Feb 26</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new google">Google</span> Nano Banana 2 image model + Gemini 3 Pro deprecated</div>
+<div class="detail">Nano Banana 2 (gemini-3.1-flash-image-preview) optimized for speed. Gemini 3 Pro Preview shut down March 9.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Feb 19</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new google">Google</span> Gemini 3.1 Pro launched</div>
+<div class="detail">Frontier reasoning model. 1M context, $2/$12 per 1M tokens. Medium thinking level for cost/speed/performance balance. Enhanced agentic coding and multimodal analysis.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Feb 17</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new anthropic">Anthropic</span> Claude Sonnet 4.6 launched</div>
+<div class="detail">Most capable Sonnet yet. 1M context (beta), 128K max output, improved coding + computer use + long-context reasoning. $3/$15 per 1M tokens. Approaches Opus intelligence at Sonnet pricing.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Feb 13</span>
+<div class="changelog-content">
+<div class="title"><span class="badge deprecation openai">OpenAI</span> GPT-4o, GPT-4.1, o4-mini retired from ChatGPT</div>
+<div class="detail">GPT-4o, GPT-4.1, GPT-4.1 mini, o4-mini, and GPT-5 (Instant/Thinking) removed from ChatGPT. Still available in API. GPT-4o in Custom GPTs until March 31.</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Feb 12</span>
+<div class="changelog-content">
+<div class="title"><span class="badge new google">Google</span> Gemini 3 Deep Think major upgrade</div>
+<div class="detail">Specialized reasoning mode upgraded to solve modern science, research, and engineering challenges. Available to Google AI Ultra subscribers.</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Tab: Deprecations -->
+<div class="tab-panel" id="tab-deprecations">
+<h2 class="section-title">Upcoming Deprecations &amp; Deadlines</h2>
+<div class="deprecation-banner">
+<h3>OpenAI — October 31 → November 30, 2026</h3>
+<ul>
+<li><strong>Evals platform</strong> — existing evals read-only on Oct 31, 2026; dashboard + API shut down Nov 30, 2026. No first-party replacement; move to OSS (LangSmith, Braintrust, Inspect AI) or internal harness. (<a href="https://developers.openai.com/api/docs/deprecations/" rel="noopener" target="_blank">OpenAI deprecations</a>)</li>
+<li><strong>Reusable prompts</strong> (<code>v1/prompts</code> API + prompt objects) — shut down Nov 30, 2026. Move prompt content into application code. (<a href="https://developers.openai.com/api/docs/deprecations/" rel="noopener" target="_blank">OpenAI deprecations</a>)</li>
+<li><strong>Agent Builder</strong> — shut down Nov 30, 2026. Migrate to Agents SDK or ChatGPT Workspace Agents. (<a href="https://developers.openai.com/api/docs/deprecations/" rel="noopener" target="_blank">OpenAI deprecations</a>)</li>
+</ul>
+</div>
+<div class="deprecation-banner">
+<h3>OpenAI — December 1, 2026</h3>
+<ul>
+<li><strong>gpt-image-1-mini</strong>, <strong>gpt-image-1.5</strong>, and <strong>chatgpt-image-latest</strong> — shut down Dec 1, 2026. Migrate to <code>gpt-image-2</code> (<a href="https://developers.openai.com/api/docs/deprecations/" rel="noopener" target="_blank">OpenAI deprecations</a>)</li>
+</ul>
+</div>
+<div class="deprecation-banner">
+<h3>OpenAI — May 12, 2026 (SHUT DOWN)</h3>
+<ul>
+<li><strong>dall-e-2</strong> and <strong>dall-e-3</strong> snapshots — shut down May 12, 2026. Migrate to <code>gpt-image-1</code> or <code>gpt-image-1-mini</code>. (<a href="https://developers.openai.com/api/docs/deprecations/" rel="noopener" target="_blank">OpenAI deprecations</a>)</li>
+</ul>
+</div>
+<div class="deprecation-banner">
+<h3>Google — June 25, 2026</h3>
+<ul>
+<li><strong>gemini-3.1-flash-image-preview</strong> — deprecated May 28, shuts down June 25. Migrate to GA <code>gemini-3.1-flash-image</code> (<a href="https://ai.google.dev/gemini-api/docs/changelog" rel="noopener" target="_blank">Gemini API changelog</a>)</li>
+<li><strong>gemini-3-pro-image-preview</strong> — deprecated May 28, shuts down June 25. Migrate to GA <code>gemini-3-pro-image</code> (<a href="https://ai.google.dev/gemini-api/docs/changelog" rel="noopener" target="_blank">Gemini API changelog</a>)</li>
+</ul>
+</div>
+<div class="deprecation-banner">
+<h3>Google — May 20, 2026 (BREAKING)</h3>
+<ul>
+<li><strong>Gemini Interactions API schema change</strong> — new schema (<code>outputs</code> → <code>steps</code>, updated <code>response_format</code>) becomes default May 20, 2026. Legacy schema removed June 6, 2026. Update agent frameworks before then. (<a href="https://ai.google.dev/gemini-api/docs/changelog" rel="noopener" target="_blank">Gemini API changelog</a>)</li>
+</ul>
+</div>
+
+<div class="deprecation-banner">
+<h3>OpenAI — July 2, 2026 → Jan 6, 2027</h3>
+<ul>
+<li><strong>Self-serve fine-tuning eligibility</strong> — May 7, 2026: orgs that never fine-tuned can’t create new jobs. July 2, 2026: orgs without FT inference in past 60 days lose access. Jan 6, 2027: all customers blocked from creating new fine-tuning jobs (existing inference continues until base model deprecates). (<a href="https://developers.openai.com/api/docs/deprecations/" rel="noopener" target="_blank">OpenAI deprecations</a>)</li>
+</ul>
+</div>
+<div class="deprecation-banner">
+<h3>OpenAI — March 26, 2026</h3>
+<ul>
+<li><strong>gpt-4-0314</strong> — sunset, auto-routes to gpt-4.1</li>
+<li><strong>gpt-4-1106-preview</strong> — sunset, auto-routes to gpt-4.1</li>
+<li><strong>gpt-4-0125-preview</strong> — sunset, auto-routes to gpt-4.1</li>
+<li><strong>gpt-4-turbo-preview</strong> — sunset, auto-routes to gpt-4.1</li>
+</ul>
+</div>
+<div class="deprecation-banner">
+<h3>OpenAI — March 31, 2026</h3>
+<ul>
+<li><strong>GPT-4o in Custom GPTs</strong> — fully retired across Business, Enterprise, Edu plans</li>
+</ul>
+</div>
+<div class="deprecation-banner">
+<h3>Google — April 30, 2026</h3>
+<ul>
+<li><strong>gemini-robotics-er-1.5-preview</strong> — shut down Apr 30, 2026 at 9AM PST (now offline). Migrate to gemini-robotics-er-1.6-preview (<a href="https://ai.google.dev/gemini-api/docs/changelog" rel="noopener" target="_blank">Gemini API changelog</a>)</li>
+</ul>
+</div>
+<div class="deprecation-banner">
+<h3>Google — March 31, 2026</h3>
+<ul>
+<li><strong>gemini-2.5-flash-lite-preview-09-2025</strong> — shutdown. Migrate to gemini-3.1-flash-lite-preview</li>
+</ul>
+</div>
+<div class="deprecation-banner">
+<h3>OpenAI — September 24, 2026</h3>
+<ul>
+<li><strong>Sora 2 models</strong> — all Sora 2 aliases and snapshots deprecated. Full shutdown Sep 24, 2026</li>
+<li><strong>Videos API (/v1/videos/*)</strong> — entire endpoint being removed. Migrate video generation workflows</li>
+</ul>
+</div>
+<div class="deprecation-banner">
+<h3>OpenAI — May 7, 2026</h3>
+<ul>
+<li><strong>Realtime API Beta</strong> — deprecated and will be removed. Migrate to production Realtime API</li>
+</ul>
+</div>
+<div class="deprecation-banner">
+<h3>OpenAI — 2026 (date TBD)</h3>
+<ul>
+<li><strong>Assistants API</strong> — being replaced by Responses API. Sunset date in 2026</li>
+</ul>
+</div>
+</div>
+<footer>
+<a href="https://www.perplexity.ai/computer" rel="noopener noreferrer" target="_blank">Created with Perplexity Computer</a>
+</footer>
+</div>
+
+
+</div>
+<script data-pa-ai-tracker="1">
+
+// Theme toggle
+(function(){
+  const btn = document.querySelector('[data-theme-toggle]');
+  const root = document.documentElement;
+  let theme = root.getAttribute('data-theme') || (matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light');
+  root.setAttribute('data-theme', theme);
+  updateIcon();
+  btn.addEventListener('click', () => {
+    theme = theme === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', theme);
+    updateIcon();
+  });
+  function updateIcon() {
+    btn.innerHTML = theme === 'dark'
+      ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>'
+      : '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>';
+  }
+})();
+
+// Tabs
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+  });
+});
+
+</script>
