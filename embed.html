@@ -455,7 +455,7 @@ footer a:hover { color: var(--text-muted); }
 <p style="font-size:var(--text-sm);color:var(--text-muted);margin-top:var(--space-1);">GPT-5.5 · Claude Sonnet 5 · Gemini 3.1 Pro</p>
 </div>
 <div class="header-meta">
-<span class="last-updated" id="lastUpdated">Updated: July 3, 2026</span>
+<span class="last-updated" id="lastUpdated">Updated: August 3, 2026</span>
 <button aria-label="Switch theme" class="theme-toggle" data-theme-toggle="">
 <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
 </button>
@@ -650,6 +650,34 @@ footer a:hover { color: var(--text-muted); }
 <div class="tab-panel" id="tab-changelog">
 <h2 class="section-title">Running Changelog</h2>
 <div class="changelog">
+<div class="changelog-entry">
+<span class="changelog-date">Jul 30</span>
+<div class="changelog-content">
+<div class="title"><span class="badge change anthropic">Anthropic</span> Cyber-evaluation incident disclosure — harness failures, not a new Sonnet 4.6 capability change</div>
+<div class="detail">Anthropic reported that a review of <strong>141,006 cybersecurity evaluation runs</strong> found three real-world incidents across six runs after misconfigured third-party environments allowed internet access. The affected models were <strong>Claude Opus 4.7</strong>, <strong>Claude Mythos 5</strong>, and an unreleased research model; Anthropic said generally available model safeguards would have blocked the identified behavior. For <strong>Sonnet 4.6</strong> coding and agent teams, the practical update is operational: audit evaluator and tool-runner network boundaries, validate outbound access before every run, and continuously monitor transcripts for unexpected real-world targeting. (<a href="https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals" rel="noopener" target="_blank">Anthropic report</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Jul 30</span>
+<div class="changelog-content">
+<div class="title"><span class="badge release google">Google</span> Gemini Robotics ER 2 preview adds multimodal embodied agents; ER 1.6 shutdown announced</div>
+<div class="detail">Google released <strong>Gemini Robotics ER 2</strong> in public preview with <code>gemini-robotics-er-2-preview</code> for spatial reasoning, agentic code execution, multi-step tool orchestration, video moment finding, and multi-robot coordination, plus <code>gemini-robotics-er-2-streaming-preview</code> for low-latency Live API streaming. Both accept <strong>text, image, video, and audio</strong> and support function calling with blocking behavior for physical actions. The same entry says <code>gemini-robotics-er-1.6-preview</code> will shut down <strong>August 31, 2026</strong>. For Gemini 3.1 Pro RAG and multimodal apps, this expands Google's agent/tooling surface rather than changing 3.1 Pro's core specs; prototype only where embodied or realtime orchestration is useful, and inventory ER 1.6 IDs now. (<a href="https://ai.google.dev/gemini-api/docs/changelog" rel="noopener" target="_blank">Gemini API changelog</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Jul 24</span>
+<div class="changelog-content">
+<div class="title"><span class="badge release anthropic">Anthropic</span> Claude Opus 5 launched — state-of-the-art coding and long-running agents at Opus 4.8 pricing</div>
+<div class="detail">Anthropic launched <code>claude-opus-5</code> at <strong>$5 / $25 per 1M input/output tokens</strong>, the same base price as Opus 4.8, with Fast mode at roughly 2.5× default speed. The post reports state-of-the-art results on Frontier-Bench, near-Fable performance on CursorBench 3.2 at half the cost per task, and stronger long-running coding, debugging, browser, computer-use, and business-workflow agents. It also adds mid-conversation tool changes without invalidating prompt cache and optional API fallbacks when safety classifiers intervene. This is not a Sonnet 4.6 pricing or context-window change, but it raises the quality ceiling for difficult coding and agent runs; benchmark Opus 5 against Sonnet 4.6 on your highest-value workflows before changing routing. (<a href="https://www.anthropic.com/news/claude-opus-5" rel="noopener" target="_blank">Anthropic launch</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Jul 20</span>
+<div class="changelog-content">
+<div class="title"><span class="badge deprecation openai">OpenAI</span> Legacy audio, realtime, and transcription families deprecated — removal Jan 20, 2027</div>
+<div class="detail">OpenAI announced deprecation of nine legacy audio/realtime/transcription model families and snapshots: <code>gpt-realtime</code>, <code>gpt-audio</code>, <code>gpt-4o-audio</code>, <code>gpt-4o-realtime</code>, <code>gpt-realtime-mini</code>, <code>gpt-audio-mini</code>, <code>gpt-4o-mini-realtime</code>, <code>gpt-4o-mini-audio</code>, and <code>gpt-4o-mini-transcribe-2025-03-20</code>. They are scheduled for removal on <strong>January 20, 2027</strong>; replacements include <code>gpt-realtime-2.1</code>, <code>gpt-realtime-2.1-mini</code>, <code>gpt-audio-1.5</code>, and <code>gpt-4o-mini-transcribe-2025-12-15</code>. This does not change GPT-5.4 pricing, context, or benchmark figures, but it is a material compatibility item for voice, realtime multimodal, and transcription agents: dual-run replacements and update model routing well before the deadline. (<a href="https://developers.openai.com/api/docs/deprecations/" rel="noopener" target="_blank">OpenAI deprecations</a>)</div>
+</div>
+</div>
 <div class="changelog-entry">
 <span class="changelog-date">Jul 2</span>
 <div class="changelog-content">
