@@ -477,7 +477,7 @@ footer a:hover { color: var(--text-muted); }
 <p style="font-size:var(--text-sm);color:var(--text-muted);margin-top:var(--space-1);">GPT-5.5 · Claude Sonnet 5 · Gemini 3.1 Pro</p>
 </div>
 <div class="header-meta">
-<span class="last-updated" id="lastUpdated">Updated: August 3, 2026</span>
+<span class="last-updated" id="lastUpdated">Updated: September 7, 2026</span>
 <button aria-label="Switch theme" class="theme-toggle" data-theme-toggle="">
 <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
 </button>
@@ -672,6 +672,27 @@ footer a:hover { color: var(--text-muted); }
 <div class="tab-panel" id="tab-changelog">
 <h2 class="section-title">Running Changelog</h2>
 <div class="changelog">
+<div class="changelog-entry">
+<span class="changelog-date">Sep 1</span>
+<div class="changelog-content">
+<div class="title"><span class="badge release anthropic">Anthropic</span> Fable 5.1 and Mythos 5.1 launch — lower cache-read cost, stronger coding and agents, customer-controlled safeguards</div>
+<div class="detail">Anthropic introduced <strong>Claude Fable 5.1</strong> and <strong>Claude Mythos 5.1</strong> as the same underlying model with different safeguards: Fable 5.1 is generally available, while Mythos 5.1 is limited to trusted access programs for cybersecurity and life-sciences work. Anthropic says Fable 5.1 should cost an estimated <strong>25% less</strong> than Fable 5 for typical token-billed workloads and up to <strong>45% less</strong> for highly agentic work because cache-read pricing is lower. The launch also adds Enterprise Frontier Safeguards, customer-controlled data storage and automated review, plus cybersecurity safeguards that block <strong>60% fewer false positives</strong>. Reported benchmarks include <strong>52.6% Terminal-Bench-Science</strong>, <strong>73.4% CursorBench 3.2</strong>, <strong>77.9% OSWorld 2.0 partial</strong>, and <strong>65.0% Humanity’s Last Exam with tools</strong>. This is not a direct <strong>Sonnet 4.6</strong> pricing or context-window change; it raises Anthropic’s frontier ceiling for coding, long-running agents, research, and enterprise RAG, so benchmark your highest-value Sonnet routes before re-routing them. (<a href="https://www.anthropic.com/claude-fable-and-mythos-5-1" rel="noopener" target="_blank">Anthropic launch</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Sep 3</span>
+<div class="changelog-content">
+<div class="title"><span class="badge release google">Google</span> Gemini API expands agentic, video, audio, and coding surfaces — Gemini 3.8 Flash GA and Lyria 3.5 preview</div>
+<div class="detail">Google’s new top changelog entry is <strong>Lyria 3.5</strong> in public preview for full-length music generation from text and image inputs with 44.1 kHz stereo output. Since the prior July 30 check, Google also made <strong>Gemini 3.8 Flash</strong> generally available for long-horizon software engineering, autonomous agents, and enterprise workflows; added <strong>agentic video understanding</strong> that dynamically requests transcripts, frames, or audio and can use up to <strong>88% fewer tokens</strong> on long-form content; shipped <strong>Gemini Omni 1.1 Flash</strong> GA for video extension, interpolation, and resolution control; and made <strong>Gemini 3.5 Transcribe</strong> and Live GA. These are adjacent-model/API updates rather than direct <strong>Gemini 3.1 Pro</strong> pricing or context changes, but they materially improve Google’s multimodal RAG and agent stack; audit video/audio routing and test the token savings before expanding long-context pipelines. The <code>gemini-omni-flash-preview</code> endpoint is scheduled for deprecation on <strong>September 30, 2026</strong>. (<a href="https://ai.google.dev/gemini-api/docs/changelog" rel="noopener" target="_blank">Gemini API changelog</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Aug 26</span>
+<div class="changelog-content">
+<div class="title"><span class="badge deprecation openai">OpenAI</span> Transcription models deprecated — migrate before February 26, 2027</div>
+<div class="detail">OpenAI announced that <code>whisper-1</code>, <code>gpt-4o-transcribe</code>, <code>gpt-4o-mini-transcribe</code>, and <code>gpt-4o-transcribe-diarize</code> are deprecated and scheduled for API removal on <strong>February 26, 2027</strong>. Recommended replacements are <code>gpt-live-transcribe</code> or <code>gpt-transcribe</code>. This is a compatibility change for voice, realtime, and multimodal agents—not a reported <strong>GPT-5.4</strong> pricing, context-window, or benchmark update. Inventory transcription model IDs, dual-run the replacements, and verify diarization and latency before the shutdown date. (<a href="https://developers.openai.com/api/docs/deprecations/" rel="noopener" target="_blank">OpenAI deprecations</a>)</div>
+</div>
+</div>
 <div class="changelog-entry">
 <span class="changelog-date">Jul 30</span>
 <div class="changelog-content">
