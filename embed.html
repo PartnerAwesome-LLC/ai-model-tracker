@@ -455,7 +455,7 @@ footer a:hover { color: var(--text-muted); }
 <p style="font-size:var(--text-sm);color:var(--text-muted);margin-top:var(--space-1);">GPT-5.5 · Claude Sonnet 5 · Gemini 3.1 Pro</p>
 </div>
 <div class="header-meta">
-<span class="last-updated" id="lastUpdated">Updated: September 7, 2026</span>
+<span class="last-updated" id="lastUpdated">Updated: October 5, 2026</span>
 <button aria-label="Switch theme" class="theme-toggle" data-theme-toggle="">
 <svg fill="none" height="16" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="16"><circle cx="12" cy="12" r="5"></circle><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"></path></svg>
 </button>
@@ -650,6 +650,27 @@ footer a:hover { color: var(--text-muted); }
 <div class="tab-panel" id="tab-changelog">
 <h2 class="section-title">Running Changelog</h2>
 <div class="changelog">
+<div class="changelog-entry">
+<span class="changelog-date">Oct 1</span>
+<div class="changelog-content">
+<div class="title"><span class="badge deprecation openai">OpenAI</span> GPT-5.4-Nano, GPT-5.1, GPT-5.3-Codex and TTS models deprecated</div>
+<div class="detail">OpenAI’s <strong>October 1 announcement</strong> schedules <code>gpt-5.3-codex</code>, <code>gpt-5.1</code>, and <code>gpt-5.4-nano</code> for shutdown on <strong>April 1, 2027</strong>; listed replacements are <code>gpt-6-sol</code> for Codex and GPT-5.1, and <code>gpt-6-luna</code> for GPT-5.4-Nano. The same dated notice retires four text-to-speech IDs on <strong>January 6, 2027</strong>, with <code>gpt-realtime-2.1-mini</code> as the replacement. A separate September 11 notice lists <code>gpt-5.4-cyber</code> with an October 1, 2026 shutdown date, so check migration status now. This is <strong>not</strong> a deprecation or pricing/context/benchmark change for the base GPT-5.4 model. For coding agents, inventory the affected model IDs and regression-test replacement behavior; for voice/multimodal apps, validate the TTS migration and audio quality before cutover. (<a href="https://developers.openai.com/api/docs/deprecations/" rel="noopener" target="_blank">OpenAI deprecations</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Sep 28</span>
+<div class="changelog-content">
+<div class="title"><span class="badge release anthropic">Anthropic</span> Claude Sonnet 5.5 launched — faster coding and agents at Sonnet 5 pricing</div>
+<div class="detail">Anthropic’s newsroom dates the Sonnet 5.5 announcement <strong>September 28, 2026</strong>. The launch page lists <code>claude-sonnet-5-5</code> at <strong>$2/$10 per million input/output tokens</strong> and $0.20 per million cache-read tokens, the same base prices as Sonnet 5; Anthropic reports 30%+ faster output and up to 30% lower cost per task versus Sonnet 5. Reported coding results include <strong>70.6% Terminal-Bench 4.0</strong> and <strong>55.5% CursorBench 4.0</strong>; these are company-published benchmarks, not independent validation. It is a newer coding/agent option, not a direct <strong>Sonnet 4.6</strong> pricing or context-window update. Benchmark it against your existing Sonnet route on representative code changes and tool-use traces; retain human review for high-impact agent actions. (<a href="https://www.anthropic.com/claude-sonnet-5-5" rel="noopener" target="_blank">Anthropic launch</a>)</div>
+</div>
+</div>
+<div class="changelog-entry">
+<span class="changelog-date">Sep 22</span>
+<div class="changelog-content">
+<div class="title"><span class="badge release google">Google</span> Gemini 3.8 TTS and Live updates; agent preview migration deadline is today</div>
+<div class="detail">Google’s top-level <strong>September 22</strong> changelog entry makes <code>gemini-3.8-flash-tts</code> and <code>gemini-3.8-flash-lite-tts</code> generally available, alongside the <code>/v1beta/voices</code> endpoint, voice design, consent-verified voice replication, and 150+ voices. Flash-Lite TTS replaces <code>gemini-3.1-flash-tts-preview</code>. The September 17 Antigravity Agent 09-2026 entry changes local-tool parameter names to PascalCase and file edits to line-range replacements; the previous preview is scheduled to shut down <strong>October 5, 2026</strong> (today). Gemini 3.8 Live and Live Extended Thinking also became GA on September 15 for low-latency voice agents and audio interactions needing background reasoning. These are adjacent API/surface changes, not a direct <strong>Gemini 3.1 Pro</strong> pricing, context-window, or benchmark update. Migrate any Antigravity preview users immediately, and evaluate TTS/Live APIs for voice-agent and multimodal RAG workflows. (<a href="https://ai.google.dev/gemini-api/docs/changelog" rel="noopener" target="_blank">Gemini API changelog</a>)</div>
+</div>
+</div>
 <div class="changelog-entry">
 <span class="changelog-date">Sep 1</span>
 <div class="changelog-content">
